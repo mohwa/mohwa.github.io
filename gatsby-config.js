@@ -195,7 +195,6 @@ module.exports = {
                         description
                         image_url
                         author
-                        copyright
                       }
                     }
                   }
