@@ -61,8 +61,7 @@ export default class SearchBox extends Component {
               </article>
             ))
           : <div>
-            <p className='fw1 i tc mt4 mt5-l f4 f3-l'>Are you looking for one of these?</p>
-            <ul className='list tc pl0 w-100 mt5'>
+            <ul className='list tc pl0 w-100 mt3'>
               <li className='dib'><Link className='f5 f4-ns link black db pv2 ph3 hover-light-blue' to='/'
                 replace>Home</Link>
               </li>
