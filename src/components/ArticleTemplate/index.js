@@ -6,6 +6,7 @@ import './styles.sass'
 import 'prismjs/themes/prism-tomorrow.css'
 import config from '../../../config'
 import Content from '../Content'
+import PageLink from '../Common/PageLink'
 
 const ArticleTemplate = ({
   content,
@@ -14,6 +15,8 @@ const ArticleTemplate = ({
   cover,
   tags,
   title,
+  prevNode,
+  nextNode,
 }) => {
   const PostContent = contentComponent || Content
 
@@ -30,8 +33,7 @@ const ArticleTemplate = ({
                   <Link
                     to={`/tags/${_.kebabCase(tag)}`}
                     key={tag}
-                    className='no-underline black dim avenir'
-                  >
+                    className='no-underline black dim avenir'>
                     <small className='f6 f4-l fw1'>#{tag}&nbsp;&nbsp;</small>
                   </Link>
                 ))}
@@ -50,6 +52,15 @@ const ArticleTemplate = ({
       <section className='mw8 center'>
         <div className='ph3 ph4-m ph5-l'>
           <PostContent content={content} className={'measure db center f5 f4-ns lh-copy'} />
+          <div
+            className='flex items-center pa4'
+            style={{
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+            }}>
+            { prevNode && <PageLink text={prevNode.frontmatter.title} url={prevNode.fields.slug} linkStyle={{ marginBottom: '10px' }} /> }
+            { nextNode && <PageLink text={nextNode.frontmatter.title} url={nextNode.fields.slug} /> }
+          </div>
         </div>
       </section>
     </article>

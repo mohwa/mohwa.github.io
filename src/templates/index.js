@@ -1,25 +1,10 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
 
 import ArticleList from '../components/ArticleList'
 import config from '../../config'
 import Layout from '../components/Layout'
-
-const PaginationLink = props => {
-  if (!props.isVisible) {
-    return (
-      <Link to={props.url}
-        className='f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box'>
-        <span className='pl1'>{props.text}</span>
-      </Link>
-    )
-  } else {
-    return (
-      null
-    )
-  }
-}
+import PageLink from '../components/Common/PageLink'
 
 export default class IndexPage extends Component {
   render () {
@@ -47,17 +32,10 @@ export default class IndexPage extends Component {
           <link rel='canonical' href='https://theleakycauldronblog.com/' />
         </Helmet>
         <div>
-
           <ArticleList posts={group} />
           <div className='flex items-center justify-center pa4'>
-            <PaginationLink isVisible={hasFirstPage}
-              url={previousPageUrl}
-              text='PREV'
-            />
-            <PaginationLink isVisible={hasLastPage}
-              url={nextPageUrl}
-              text='NEXT'
-            />
+            { !hasFirstPage && <PageLink url={previousPageUrl} text='PREV' linkStyle={{ marginRight: '5px' }} /> }
+            { !hasLastPage && <PageLink url={nextPageUrl} text='NEXT' linkStyle={{ marginLeft: '5px' }} /> }
           </div>
         </div>
       </Layout>

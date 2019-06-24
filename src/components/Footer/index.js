@@ -1,5 +1,4 @@
 import React from 'react'
-import Socials from '../Socials'
 
 const Footer = ({ config }) => {
   return (
@@ -9,10 +8,9 @@ const Footer = ({ config }) => {
       <div className='dt dt--fixed w-100'>
         <div className='dn dtc-ns v-mid'>
           <p className='f7 black-70 dib pr3 mb3'>
-            <a className='link black hover-purple' href='https://github.com/mohwa' target='_blank' rel='mohwa on Github'>@mohwa1</a>
+            <a className='link black hover-purple' href='https://github.com/mohwa' target='_blank' rel='mohwa on Github'>@mohwa</a>
           </p>
         </div>
-        {/*<Socials />*/}
       </div>
       <div className='db dn-ns'>
         <p className='f7 black-70 mt4 tc'>

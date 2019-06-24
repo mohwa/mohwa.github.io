@@ -1,7 +1,7 @@
 module.exports = {
-  siteTitle: 'Mucha Blog', // Site title.
+  siteTitle: 'Mucha', // Site title.
   siteSubTitle: '', // Site sub title
-  siteTitleAlt: 'Mucha Blog', // Alternative site title for SEO.
+  siteTitleAlt: 'Mucha', // Alternative site title for SEO.
   siteLogo: '/logos/logo-512x512.png', // Logo used for SEO and manifest.
   siteUrl: 'https://mucha.kr', // Domain of your website without pathPrefix.
   pathPrefix: '/', // Prefixes all links. For cases when deployed to example.github.io/gatsby-starter-business/.
