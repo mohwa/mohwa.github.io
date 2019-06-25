@@ -79,7 +79,7 @@ exports.createPages = ({ actions, graphql }) => {
         context: {
           id,
           prevNode,
-          nextNode
+          nextNode,
         },
       })
     })

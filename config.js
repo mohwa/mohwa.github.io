@@ -9,7 +9,7 @@ module.exports = {
   siteRss: '/rss.xml',
   googleTagManagerID: 'GTM-KJVT38T', // GTM tracking ID.
   disqusShortname: 'mohwa', // Disqus shortname.
-  userName: 'mohwa',
+  userName: 'mucha',
   userTwitter: 'yanione',
   userLocation: '',
   userDescription: '',

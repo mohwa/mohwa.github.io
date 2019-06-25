@@ -10,8 +10,6 @@ meta_description: >-
   likely to visit next from a given page and prefetches them, making UX super
   smooth.
 tags:
-  - GatsbyJS
-  - GuessJS
   - MachineLearning
   - UX
 ---

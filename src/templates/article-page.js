@@ -5,7 +5,7 @@ import { HTMLContent } from '../components/Content'
 import ArticleTemplate from '../components/ArticleTemplate'
 import SE0 from '../components/SEO'
 import Disqus from '../components/Disqus'
-import Share from '../components/Share'
+// import Share from '../components/Share'
 import Layout from '../components/Layout'
 
 
@@ -75,7 +75,7 @@ export const pageQuery = graphql`
                 slug
             }
             frontmatter {
-                date(formatString: "MMMM DD, YYYY")
+                date(formatString: "YYYY/MM/DD hh:mm")
                 title
                 cover {
                     childImageSharp {
