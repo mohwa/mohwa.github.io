@@ -1,5 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
+import './PageLink.scss'
 
 export default class PageLink extends React.Component {
   render () {
@@ -8,19 +9,11 @@ export default class PageLink extends React.Component {
     return (
       <Link
         to={url}
-        className='f5 no-underline black items-center pa3 ba border-box'
+        className='PageLink f5 no-underline items-center pa3 ba border-box'
         style={{
-          borderRadius: '4px',
-          color: '#dc46a4',
           ...linkStyle,
         }}>
-        <span
-          className='pl1'
-          style={{
-            fontSize: '1rem',
-          }}>
-          {text}
-        </span>
+        <span className='title pl1'>{text}</span>
       </Link>
     )
   }
