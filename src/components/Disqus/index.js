@@ -34,8 +34,7 @@ class Disqus extends Component {
         <script src='https://utteranc.es/client.js'
                 repo='mohwa/mohwa.github.io'
                 issue-term='pathname'
-                theme='github-light'
-                async>
+                theme='github-light'>
         </script>
       </section>
     )
