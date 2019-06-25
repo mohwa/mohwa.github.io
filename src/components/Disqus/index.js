@@ -35,7 +35,6 @@ class Disqus extends Component {
                 repo='mohwa/mohwa.github.io'
                 issue-term='pathname'
                 theme='github-light'
-                crossOrigin='anonymous'
                 async>
         </script>
       </section>
