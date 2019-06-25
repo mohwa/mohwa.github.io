@@ -36,6 +36,7 @@ class Disqus extends Component {
                 issue-term='pathname'
                 theme='github-light'
                 crossOrigin='anonymous'
+                branch='master'
                 async>
         </script>
       </section>
