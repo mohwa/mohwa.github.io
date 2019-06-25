@@ -30,11 +30,13 @@ class Disqus extends Component {
     }
     // const url = config.siteUrl + slug
     return (
-      <section className='utterances mb3 pa3 pa5-l center'>
+      <section className='mb3 pa3 pa5-l center'>
         <script src='https://utteranc.es/client.js'
                 repo='mohwa/mohwa.github.io'
                 issue-term='pathname'
-                theme='github-light'>
+                theme='github-light'
+                crossOrigin='anonymous'
+                async>
         </script>
       </section>
     )
