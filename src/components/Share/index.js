@@ -37,7 +37,7 @@ export default class Share extends Component {
     }
 
     return (
-    	<div clasName='Share'>
+    	<div className='Share'>
 	      <div className='pv4 ph3 ph5-ns tc'>
 	        <div className='dib mr3' style={{ cursor: 'pointer' }}>
 	          <TwitterShareButton url={url} title={title}>
