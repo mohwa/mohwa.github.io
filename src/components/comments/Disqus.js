@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import ReactDisqusComments from 'react-disqus-comments'
+import ReactDisqusComments from 'react-disqus-comments'
 import config from '../../../config'
 
 class Disqus extends Component {
@@ -24,21 +24,20 @@ class Disqus extends Component {
   }
 
   render () {
-    // const { title, slug } = this.props
+    const { title, slug } = this.props
     if (!config.disqusShortname) {
       return null
     }
-    // const url = config.siteUrl + slug
+    const url = config.siteUrl + slug
     return (
       <section className='mb3 pa3 pa5-l center'>
-        <script src='https://utteranc.es/client.js'
-                repo='mohwa/mohwa.github.io'
-                issue-term='pathname'
-                theme='github-light'
-                crossOrigin='anonymous'
-                branch='master'
-                async>
-        </script>
+        <ReactDisqusComments
+          shortname={config.disqusShortname}
+          identifier={title}
+          title={title}
+          url={url}
+          onNewComment={this.notifyAboutComment}
+        />
       </section>
     )
   }

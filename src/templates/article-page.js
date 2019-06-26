@@ -4,8 +4,8 @@ import { graphql } from 'gatsby'
 import { HTMLContent } from '../components/Content'
 import ArticleTemplate from '../components/ArticleTemplate'
 import SE0 from '../components/SEO'
-import Disqus from '../components/Disqus'
-// import Share from '../components/Share'
+import Utterances from '../components/comments/Utterances'
+import Share from '../components/Share'
 import Layout from '../components/Layout'
 
 
@@ -51,7 +51,8 @@ const ArticlePage = ({ data, pageContext, }) => {
           nextNode={nextNode}
         />
         <section className='mw8 center'>
-          <Disqus title={title} slug={fields.slug} />
+          <Share title={title} slug={fields.slug} excerpt={meta_description} />
+          <Utterances />
         </section>
       </section>
     </Layout>
