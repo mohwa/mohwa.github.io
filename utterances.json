@@ -1,3 +1,6 @@
 {
-  "origins": ["https://mucha.kr"]
+  "origins": [
+    "https://mucha.kr",
+    "http://localhost:8000"
+  ]
 }
