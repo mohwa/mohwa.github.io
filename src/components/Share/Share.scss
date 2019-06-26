@@ -1,12 +1,14 @@
 .Share {
-  border-top: 1px solid #e1e4e8;
-  border-bottom: 1px solid #e1e4e8;
+  .share-icon-container {
+    border-top: 1px solid #e1e4e8;
+    border-bottom: 1px solid #e1e4e8;
 
-  .share-icon {
-    width: 24px;
-    height: 24px;
-    background: url(../../../static/icons/share-icon.svg) no-repeat;
-    background-size: cover;
-    display: inline-block;
+    .share-icon {
+      width: 24px;
+      height: 24px;
+      background: url(../../../static/icons/share-icon.svg) no-repeat;
+      background-size: cover;
+      display: inline-block;
+    }
   }
 }
