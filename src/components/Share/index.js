@@ -6,9 +6,13 @@ import {
 import './Share.scss'
 import config from '../../../config'
 
-class Share extends Component {
+export default class Share extends Component {
+  isSupportedNavigatorShare = false
+  componentDidMount () {
+    this.isSupportedNavigatorShare = navigator.share ? true : false
+  }
   openShareModel (text, url) {
-    window.navigator.share({
+    navigator.share({
       title: document.title,
       text,
       url,
@@ -19,12 +23,10 @@ class Share extends Component {
     const { title, slug, excerpt } = this.props
     const realPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
     const url = config.siteUrl + realPrefix + slug
-
-    const isSupportedNavigatorShare = navigator.share ? true : false
     let shareHtml
 
 
-    if (isSupportedNavigatorShare) {
+    if (this.isSupportedNavigatorShare) {
       shareHtml =
         <div className='Share flex justify-end pa3'>
 	        <a className='share-icon' onClick={() => this.openShareModel(title, url)} />
@@ -60,5 +62,3 @@ class Share extends Component {
     return shareHtml
   }
 }
-
-export default Share
