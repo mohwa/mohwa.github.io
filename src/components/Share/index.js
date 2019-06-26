@@ -8,7 +8,7 @@ import config from '../../../config'
 
 class Share extends Component {
   openShareModel (text, url) {
-    navigator.share({
+    window.navigator.share({
       title: document.title,
       text,
       url,
