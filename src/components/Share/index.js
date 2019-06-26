@@ -29,7 +29,7 @@ export default class Share extends Component {
     if (this.isSupportedNavigatorShare()) {
       return (
         <div className='Share flex justify-end pa2'>
-	        <a href='#' className='share-icon' onClick={() => this.openShareModel(title, url)} />
+	        <a className='share-icon' onClick={() => this.openShareModel(title, url)} />
         </div>
       )
     }
