@@ -26,7 +26,7 @@ export default class Share extends Component {
     const realPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
     const url = config.siteUrl + realPrefix + slug
 
-    if (!this.isSupportedNavigatorShare()) {
+    if (this.isSupportedNavigatorShare()) {
       return (
         <div className='Share flex justify-end pa2'>
 	        <a href='#' className='share-icon' onClick={() => this.openShareModel(title, url)} />
