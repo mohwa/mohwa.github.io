@@ -27,7 +27,7 @@ class Share extends Component {
     if (isSupportedNavigatorShare) {
       shareHtml =
         <div className='Share flex justify-end pa3'>
-          <a className='share-icon' onClick={ () => this.openShareModel(title, url) }></a>
+	        <a className='share-icon' onClick={() => this.openShareModel(title, url)} />
         </div>
     } else {
       shareHtml =
