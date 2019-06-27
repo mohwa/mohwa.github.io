@@ -7,6 +7,7 @@ import SE0 from '../components/SEO'
 import Utterances from '../components/comments/Utterances'
 import Share from '../components/Share'
 import Layout from '../components/Layout'
+import TextResizer from '../components/TextResizer'
 
 
 const ArticlePage = ({ data, pageContext, }) => {
@@ -40,6 +41,7 @@ const ArticlePage = ({ data, pageContext, }) => {
           slug={fields.slug}
           date={date}
         />
+        <TextResizer />
         <ArticleTemplate
           content={html}
           contentComponent={HTMLContent}

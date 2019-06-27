@@ -1,0 +1,17 @@
+.TextResizer {
+  .more {
+    width: 16px;
+    height: 16px;
+    background: url(../../../static/icons/more.svg) no-repeat;
+    background-size: cover;
+    display: inline-block;
+  }
+
+  .substract {
+    width: 16px;
+    height: 16px;
+    background: url(../../../static/icons/substract.svg) no-repeat;
+    background-size: cover;
+    display: inline-block;
+  }
+}
