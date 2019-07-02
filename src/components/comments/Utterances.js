@@ -25,7 +25,7 @@ class Utterances extends React.Component {
 
   render () {
     return (
-      <div className="utterances" ref={this.commentElem} />
+      <div className='utterances' ref={this.commentElem} />
     )
   }
 }

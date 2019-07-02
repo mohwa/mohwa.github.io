@@ -11,6 +11,10 @@
   },
   "rules": {
     "react/prop-types": "off",
-    "camelcase": "off"
-  }
+    "camelcase": "off",
+    "no-tabs": ["error", { "allowIndentationTabs": true }],
+    "indent": 2,
+    "react/jsx-indent": 2,
+    "no-mixed-spaces-and-tabs": "off"
+  },
 }

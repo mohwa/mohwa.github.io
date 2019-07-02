@@ -10,8 +10,6 @@ const Header = () => (
     <nav className='bt bb tc mw8 center mt4'>
       <Link className='f6 link black-80 dib pa3' to='/'>Home</Link>
       <Link className='f6 link black-80 dib pa3' to='/search'>Search</Link>
-      {/*<Link className='f6 f5-l link bg-animate black-80 hover-bg-light-green dib pa3 ph4-l' to='/about'>About</Link>*/}
-      {/*<Link className='f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l' to='/contact'>Contact</Link>*/}
     </nav>
   </header>
 )

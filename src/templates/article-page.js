@@ -9,8 +9,7 @@ import Share from '../components/Share'
 import Layout from '../components/Layout'
 import TextResizer from '../components/TextResizer'
 
-
-const ArticlePage = ({ data, pageContext, }) => {
+const ArticlePage = ({ data, pageContext }) => {
   const {
     frontmatter: frontMatter,
     fields,
@@ -28,7 +27,7 @@ const ArticlePage = ({ data, pageContext, }) => {
     meta_description,
     cover,
     date,
-    tags
+    tags,
   } = frontMatter
   return (
     <Layout>

@@ -65,12 +65,6 @@ export default class SearchBox extends Component {
               <li className='dib'><Link className='f5 f4-ns link black db pv2 ph3 hover-light-blue' to='/'
                 replace>Home</Link>
               </li>
-              {/*<li className='dib'><Link className='f5 f4-ns link black db pv2 ph3 hover-light-green'*/}
-                {/*to='/about' replace>About</Link>*/}
-              {/*</li>*/}
-              {/*<li className='dib'><Link className='f5 f4-ns link black db pv2 ph3 hover-light-yellow'*/}
-                {/*to='/contact' replace>Contact</Link>*/}
-              {/*</li>*/}
               <li className='dib'><Link className='f5 f4-ns link black db pv2 ph3 hover-light-purple'
                 to='/tags' replace>Tags</Link>
               </li>

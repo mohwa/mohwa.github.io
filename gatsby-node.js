@@ -108,7 +108,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
      */
     const value = createFilePath({
       node,
-      getNode
+      getNode,
     })
     createNodeField({
       name: `slug`,
