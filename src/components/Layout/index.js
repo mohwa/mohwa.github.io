@@ -6,7 +6,7 @@ import Footer from '../Footer'
 import Header from '../Header'
 
 const Layout = (props) => (
-<Fragment>
+  <Fragment>
     <Helmet>
       <title>{config.siteTitle}</title>
       <meta name='description' content={config.siteDescription} />
