@@ -2,7 +2,7 @@ module.exports = {
   siteTitle: 'Mohwa', // Site title.
   siteSubTitle: '', // Site sub title
   siteTitleAlt: 'Mohwa', // Alternative site title for SEO.
-  siteLogo: '/logos/logo-512x512.png', // Logo used for SEO and manifest.
+  siteLogo: '', // Logo used for SEO and manifest.
   siteUrl: 'https://mohwa.me', // Domain of your website without pathPrefix.
   pathPrefix: '/', // Prefixes all links. For cases when deployed to example.github.io/gatsby-starter-business/.
   siteDescription: '', // Website description used for RSS feeds/meta description tag.

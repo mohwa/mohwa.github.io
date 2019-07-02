@@ -2,41 +2,16 @@ const config = require('./config')
 
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
 
-const dynamicPlugins = []
-if (process.env.CLIENT_EMAIL) {
-  // pick data from 3 months ago
-  const startDate = new Date()
-  startDate.setMonth(startDate.getMonth() - 3)
-  try {
-    dynamicPlugins.push({
-      resolve: `gatsby-plugin-guess-js`,
-      options: {
-        GAViewID: `164408679`,
-        jwt: {
-          client_email: process.env.CLIENT_EMAIL,
-          private_key: process.env.PRIVATE_KEY,
-        },
-        period: {
-          startDate,
-          endDate: new Date(),
-        },
-      },
-    })
-  } catch (e) {
-    console.log(e)
-  }
-}
-
 module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     siteUrl: config.siteUrl,
     rssMetadata: {
-      site_url: config.siteUrl + pathPrefix,
-      feed_url: config.siteUrl + pathPrefix + config.siteRss,
+      site_url: `${config.siteUrl}${pathPrefix}`,
+      feed_url: `${config.siteUrl}${pathPrefix}${config.siteRss}`,
       title: config.siteTitle,
       description: config.siteDescription,
-      image_url: `${config.siteUrl + pathPrefix}/icons/icon-512x512.png`,
+      image_url: `${config.siteUrl}${pathPrefix}/icons/icon-512x512.png`,
       author: config.userName,
     },
   },
@@ -144,8 +119,10 @@ module.exports = {
       },
     },
     {
-      // desktop, mobile device 에서 아이콘 추가를위한 plugin
-      // https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/?=gatsby-plugin-manifest
+      /**
+       * manifest 파일을 생성해주는 plugin
+       * @see https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/?=gatsby-plugin-manifest
+       */
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: config.siteTitle,
@@ -154,18 +131,19 @@ module.exports = {
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
         display: 'standalone',
-        icons: [
-          {
-            src: `/icons/icon-192x192.png`,
-            sizes: `192x192`,
-            type: `image/png`,
-          },
-          {
-            src: `/icons/icon-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`,
-          },
-        ],
+        icons: [],
+        // icons: [
+        //   {
+        //     src: `/icons/icon-192x192.png`,
+        //     sizes: `192x192`,
+        //     type: `image/png`,
+        //   },
+        //   {
+        //     src: `/icons/icon-512x512.png`,
+        //     sizes: `512x512`,
+        //     type: `image/png`,
+        //   },
+        // ],
       },
     },
     /**
@@ -205,9 +183,6 @@ module.exports = {
             serialize (ctx) {
               const rssMetadata = ctx.query.site.siteMetadata.rssMetadata
               return ctx.query.allMarkdownRemark.edges
-                .filter(
-                  edge => edge.node.frontmatter.templateKey === 'article-page'
-                )
                 .map(edge => ({
                   categories: edge.node.frontmatter.tags,
                   date: edge.node.frontmatter.date,
@@ -233,7 +208,6 @@ module.exports = {
                             fields { slug }
                             frontmatter {
                               title
-                              templateKey
                               cover {
                                 publicURL
                               }
@@ -265,7 +239,6 @@ module.exports = {
             title: node => node.frontmatter.title,
             tags: node => node.frontmatter.tags,
             slug: node => node.fields.slug,
-            templateKey: node => node.frontmatter.templateKey,
           },
         },
       },
