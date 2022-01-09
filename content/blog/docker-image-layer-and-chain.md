@@ -29,7 +29,9 @@ ADD ./third.txt .
 CMD ["echo", "fourth"]
 ```
 
-`docker history` 명령으로 `중간 이미지`들의 `사이즈`를 확인합니다.
+## 도커 이미지 레이어
+
+`docker history` 명령으로 각 `이미지`들의 `사이즈`를 확인합니다.
 
 - https://docs.docker.com/engine/reference/commandline/history/
 
