@@ -1,19 +1,29 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import 'tachyons-sass/tachyons.scss'
+import * as React from "react"
+import { graphql } from "gatsby"
 
-const NotFoundPage = () => (
-  <section className='vh-100 avenir'>
-    <header className='tc ph5 lh-copy'>
-      <h1 className='f1 f-headline-l code mb3 fw9 dib tracked-tight light-pink'>404</h1>
-      <h2 className='tc f1-l fw1'>Oops!, We can't seem to find the page you're looking for.</h2>
-    </header>
-    <p className='fw1 i tc mt4 mt5-l f4 f3-l'>Are you looking for one of these?</p>
-    <ul className='list tc pl0 w-100 mt5'>
-      <li className='dib'><Link className='f5 f4-ns link black db pv2 ph3 hover-light-blue' to='/' replace>Home</Link></li>
-      <li className='dib'><Link className='f5 f4-ns link black db pv2 ph3 hover-light-purple' to='/tags' replace>Tags</Link></li>
-    </ul>
-  </section>
-)
+import Layout from "../components/layout"
+import Seo from "../components/seo"
+
+const NotFoundPage = ({ data, location }) => {
+  const siteTitle = data.site.siteMetadata.title
+
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title="404: Not Found" />
+      <h1>404: Not Found</h1>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    </Layout>
+  )
+}
 
 export default NotFoundPage
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`

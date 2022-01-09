@@ -1,119 +1,115 @@
-const _ = require('lodash')
-const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
-const createPaginatedPages = require('gatsby-paginate')
-const { fmImagesToRelative } = require('gatsby-remark-relative-images')
+const path = require(`path`)
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = async ({ actions, graphql }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const result = await graphql(`
-    {
-      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-        edges {
-          node {
-            excerpt(pruneLength: 250)
+  // Define a template for blog post
+  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+
+  // Get all markdown blog posts sorted by date
+  const result = await graphql(
+    `
+      {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: ASC }
+          limit: 1000
+        ) {
+          nodes {
             id
             fields {
               slug
             }
-            frontmatter {
-              cover {
-                childImageSharp{
-                  fluid (maxWidth:500, quality:50){
-                    src
-                    srcSet
-                    aspectRatio
-                    sizes
-                    base64
-                  }
-                }
-                publicURL
-              }
-              title,
-              tags
-              date(formatString: "MMMM DD, YYYY")
-            }
           }
         }
       }
-    }
-  `)
+    `
+  )
 
   if (result.errors) {
-    result.errors.forEach(e => console.error(e.toString()))
-    return Promise.reject(result.errors)
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      result.errors
+    )
+    return
   }
 
-  const nodes = result.data.allMarkdownRemark.edges
+  const posts = result.data.allMarkdownRemark.nodes
 
-  createPaginatedPages({
-    edges: nodes,
-    createPage: createPage,
-    pageTemplate: 'src/templates/index.js',
-    pageLength: 2, // This is optional and defaults to 10 if not used
-    pathPrefix: '', // This is optional and defaults to an empty string if not used
-    context: {}, // This is optional and defaults to an empty object if not used
-  })
+  // Create blog posts pages
+  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
+  // `context` is available in the template as a prop and as a variable in GraphQL
 
-  nodes.forEach((edge, index) => {
-    const prevNode = index === 0 ? null : nodes[index - 1].node
-    const nextNode = index === (nodes.length - 1) ? null : nodes[index + 1].node
-    const id = edge.node.id
-    createPage({
-      path: edge.node.fields.slug,
-      tags: edge.node.frontmatter.tags,
-      component: path.resolve(`src/templates/article-page.js`),
-      // additional data can be passed via context
-      context: {
-        id,
-        prevNode,
-        nextNode,
-      },
+  if (posts.length > 0) {
+    posts.forEach((post, index) => {
+      const previousPostId = index === 0 ? null : posts[index - 1].id
+      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+
+      createPage({
+        path: post.fields.slug,
+        component: blogPost,
+        context: {
+          id: post.id,
+          previousPostId,
+          nextPostId,
+        },
+      })
     })
-  })
-
-  // Tag pages:
-  let tags = []
-  // Iterate through each post, putting all found tags into `tags`
-  nodes.forEach(edge => {
-    tags = tags.concat(_.get(edge, `node.frontmatter.tags`, []))
-  })
-  // Eliminate duplicate tags
-  tags = _.uniq(tags)
-
-  /**
-   * @see https://lodash.com/docs/4.17.11#kebabCase
-   */
-  tags.forEach(tag => {
-    const tagPath = `/tags/${_.kebabCase(tag)}/`
-
-    createPage({
-      path: tagPath,
-      component: path.resolve(`src/templates/tags.js`),
-      context: {
-        tag,
-      },
-    })
-  })
+  }
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-  fmImagesToRelative(node)
 
   if (node.internal.type === `MarkdownRemark`) {
-    /**
-     * @example value === '/blog/test/'
-     */
-    const value = createFilePath({
-      node,
-      getNode,
-    })
+    const value = createFilePath({ node, getNode })
+
     createNodeField({
       name: `slug`,
       node,
       value,
     })
   }
+}
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+
+  // Explicitly define the siteMetadata {} object
+  // This way those will always be defined even if removed from gatsby-config.js
+
+  // Also explicitly define the Markdown frontmatter
+  // This way the "MarkdownRemark" queries will return `null` even when no
+  // blog posts are stored inside "content/blog" instead of returning an error
+  createTypes(`
+    type SiteSiteMetadata {
+      author: Author
+      siteUrl: String
+      social: Social
+    }
+
+    type Author {
+      name: String
+      summary: String
+    }
+
+    type Social {
+      twitter: String
+    }
+
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+      fields: Fields
+    }
+
+    type Frontmatter {
+      title: String
+      description: String
+      date: Date @dateformat
+    }
+
+    type Fields {
+      slug: String
+    }
+  `)
 }
