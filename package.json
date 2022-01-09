@@ -35,6 +35,7 @@
   "homepage": "http://mohwa.github.io",
   "scripts": {
     "build": "gatsby build",
+    "postbuild": "cp public docs",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
