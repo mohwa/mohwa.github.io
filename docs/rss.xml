@@ -1,220 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 09 Jan 2022 01:04:10 GMT</lastBuildDate><item><title><![CDATA[도커 빌드 캐시]]></title><description><![CDATA[이 글을 더 정확히 이해하기위해, 도커 중간 이미지 및 레이어를 먼저 읽어보시는것을 추천드립니다. 테스트 환경 OS: centos/7 Docker Version: 20.10.12 호스트 OS 및 Docker Version…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/docker-build-cache/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/docker-build-cache/</guid><pubDate>Sun, 09 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이 글을 더 정확히 이해하기위해, &lt;a href=&quot;/docker-intermediate-image&quot;&gt;도커 중간 이미지 및 레이어&lt;/a&gt;를 먼저 읽어보시는것을 추천드립니다.&lt;/p&gt;
-&lt;p&gt;테스트 환경&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;OS: centos/7&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Docker Version: 20.10.12&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;호스트 OS 및 Docker Version 에 따라, 이 글의 &lt;code class=&quot;language-text&quot;&gt;테스트 결과&lt;/code&gt;가 다를 수 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/38532483/where-is-var-lib-docker-on-mac-os-x&quot;&gt;Where is /var/lib/docker on Mac/OS X&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://memostack.tistory.com/3&quot;&gt;Mac 환경의 Docker 는 /var/lib/docker가 없다&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;도커 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt; 및 &lt;code class=&quot;language-text&quot;&gt;컨테이너&lt;/code&gt;가 초기화되어있습니다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;먼저, Dockerfile 생성합니다.&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;첫 번째 이미지를 생성한 경우&lt;/h2&gt;
-&lt;p&gt;우선 생성된 모든 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 저장되는 공간을 확인해보면, 모두 비어있는것을 확인할 수 있습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker build&lt;/code&gt; 명령으로, &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 이미지를 생성합니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# docker build -t docker-layers:0.0.1 .
-
-Sending build context to Docker daemon  4.096kB
-Step 1/5 : FROM alpine:latest
-latest: Pulling from library/alpine
-59bf1c3509f3: Pull complete
-Digest: sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300
-Status: Downloaded newer image for alpine:latest
- ---&amp;gt; c059bfaa849c
-Step 2/5 : RUN echo first
- ---&amp;gt; Running in 24aaa5617f83
-first
-Removing intermediate container 24aaa5617f83
- ---&amp;gt; 3a18fe3979f0
-Step 3/5 : COPY ./second.txt .
- ---&amp;gt; 6da5ddb808b7
-Step 4/5 : ADD ./third.txt .
- ---&amp;gt; a537bad7aa2b
-Step 5/5 : CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;]
- ---&amp;gt; Running in da1be8fb3579
-Removing intermediate container da1be8fb3579
- ---&amp;gt; 17be1d9b9c5e
-Successfully built 17be1d9b9c5e
-Successfully tagged docker-layers:0.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420099-ad4170e4-2f5d-4aa1-a2b5-9244a1a0e767.png&quot; height=&quot;800&quot;&gt;
-&lt;blockquote&gt;
-&lt;p&gt;캐시된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 존재하지않는것을, 한번 더 확인할 수 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;이제 &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 의 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 생성된것을 확인할 수 있습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
-
-c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
-3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
-6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
-a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
-17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;두번째 이미지를 생성한 경우&lt;/h2&gt;
-&lt;p&gt;먼저 &lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt; 디렉토리를 확인해보면, 이전 &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 이미지로부터
-생성된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들을 확인할 수 있습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
-
-c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
-3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
-6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
-a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
-17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker build&lt;/code&gt; 명령으로, &lt;code class=&quot;language-text&quot;&gt;docker-layer:0.0.2&lt;/code&gt; 이미지를 생성합니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# docker build -t docker-layers:0.0.2 .
-
-Sending build context to Docker daemon  4.096kB
-Step 1/5 : FROM alpine:latest
- ---&amp;gt; c059bfaa849c
-Step 2/5 : RUN echo first
- ---&amp;gt; Using cache
- ---&amp;gt; 3a18fe3979f0
-Step 3/5 : COPY ./second.txt .
- ---&amp;gt; Using cache
- ---&amp;gt; 6da5ddb808b7
-Step 4/5 : ADD ./third.txt .
- ---&amp;gt; Using cache
- ---&amp;gt; a537bad7aa2b
-Step 5/5 : CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;]
- ---&amp;gt; Using cache
- ---&amp;gt; 17be1d9b9c5e
-Successfully built 17be1d9b9c5e
-Successfully tagged docker-layers:0.0.2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420069-71291d1d-0d57-4b1f-bca2-ca9e4f2a99ec.png&quot; height=&quot;800&quot;&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 로 부터 캐시된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이, &lt;code class=&quot;language-text&quot;&gt;재 활용&lt;/code&gt;된것을 확인할 수 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;&lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt; 내용을 변경한 후, 이미지를 생성한 경우&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt; 디렉토리를 확인합니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test sha256]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
-
-c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
-3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
-6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
-a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
-17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;기존 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt; 내용을 일부 수정합니다.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;기존 &lt;code class=&quot;language-text&quot;&gt;이미지 체인&lt;/code&gt;에 변화를 주기위해, 컨테이너 &lt;code class=&quot;language-text&quot;&gt;파일 시스템&lt;/code&gt;에 영향을 주는 새로운 &lt;code class=&quot;language-text&quot;&gt;COPY&lt;/code&gt; 명령(&lt;code class=&quot;language-text&quot;&gt;COPY ./new_second.txt .&lt;/code&gt;)을 추가합니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./new_second.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;위 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt; 에서 COPY 될 &lt;code class=&quot;language-text&quot;&gt;new_second.txt&lt;/code&gt; 파일을 생성합니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# echo new_second &amp;gt; new_second.txt &amp;amp;&amp;amp; ls
-
-Dockerfile  new_second.txt  second.txt  third.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker build&lt;/code&gt; 명령으로, &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.3&lt;/code&gt; 이미지를 생성합니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# docker build -t docker-layers:0.0.3 .
-
-Sending build context to Docker daemon   5.12kB
-Step 1/6 : FROM alpine:latest
- ---&amp;gt; c059bfaa849c
-Step 2/6 : RUN echo first
- ---&amp;gt; Using cache
- ---&amp;gt; 3a18fe3979f0
-Step 3/6 : COPY ./second.txt .
- ---&amp;gt; Using cache
- ---&amp;gt; 6da5ddb808b7
-Step 4/6 : COPY ./new_second.txt .
- ---&amp;gt; c3f400b3c3b4
-Step 5/6 : ADD ./third.txt .
- ---&amp;gt; b089e6d887fe
-Step 6/6 : CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;]
- ---&amp;gt; Running in 25d40b3f392a
-Removing intermediate container 25d40b3f392a
- ---&amp;gt; 2e50e1c93943
-Successfully built 2e50e1c93943
-Successfully tagged docker-layers:0.0.3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420089-aaebece2-e80f-4046-982b-a7230009c3da.png&quot; height=&quot;800&quot;&gt;
-&lt;blockquote&gt;
-&lt;p&gt;일부 이미지(&lt;code class=&quot;language-text&quot;&gt;c059bfaa849c&lt;/code&gt; ~ &lt;code class=&quot;language-text&quot;&gt;6da5ddb808b7&lt;/code&gt;)들만 &lt;code class=&quot;language-text&quot;&gt;재 활용&lt;/code&gt;되었고, 추가된 &lt;code class=&quot;language-text&quot;&gt;COPY&lt;/code&gt; 명령과,&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;그 뒤의 모든 명령들이 새로운 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;로 추가되었습니다.&lt;/p&gt;
-&lt;p&gt;다시 &lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt; 디렉토리를 확인합니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test ~]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
-
-c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
-3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
-6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
-c3f400b3c3b4a725e4bf150ce314a3ba006fb622ea3de26c04a5697dd3184327
-b089e6d887fe05bada5545875ec3d97d55f5b41c4cba260a9c64b66fa30cddf8
-2e50e1c939430406a23641225d384c1da7b9b7699f3a08b02596d4214ed1cd3d
-a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
-17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;이전 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt; 목록에,&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
-3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
-6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
-a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
-17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;새로운 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 더해진것을 확인할 수 있습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;c3f400b3c3b4a725e4bf150ce314a3ba006fb622ea3de26c04a5697dd3184327
-b089e6d887fe05bada5545875ec3d97d55f5b41c4cba260a9c64b66fa30cddf8
-2e50e1c939430406a23641225d384c1da7b9b7699f3a08b02596d4214ed1cd3d&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;캐시된 이미지가 무효화된 이유&lt;/h2&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420089-aaebece2-e80f-4046-982b-a7230009c3da.png&quot; height=&quot;800&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;&quot;&gt;이미지 레이어 체인&lt;/a&gt;의 &lt;code class=&quot;language-text&quot;&gt;부모/자식&lt;/code&gt; 관계로인해,
-추가된 이미지(&lt;code class=&quot;language-text&quot;&gt;new_second.txt&lt;/code&gt;) 이후의 이미지들이 바라보던 &lt;code class=&quot;language-text&quot;&gt;parent&lt;/code&gt; 의 변경과함께,
-새로운 이미지들이 추가되었고, 그로인해, 이전에 캐시된 이미지들을 사용할 수 없게된 것이다.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;즉, 변경된 &lt;code class=&quot;language-text&quot;&gt;명령&lt;/code&gt; 이후의 &lt;code class=&quot;language-text&quot;&gt;모든 명령&lt;/code&gt;들은, 캐시된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;를 사용하지않고, 새로운 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;를 만들어냅니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;변경전 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;] &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148461729-44228c21-9209-4ac8-a30c-46b7facff7c7.png&quot; height=&quot;800&quot;&gt;
-&lt;p&gt;변경 후 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./new_second.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
-&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420094-f817a05e-8d11-48d2-8ce2-04d90823ba0e.png&quot; height=&quot;800&quot;&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/metadata/sha256&lt;/code&gt; 목록입니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test sha256]# ls /var/lib/docker/image/overlay2/imagedb/metadata/sha256
-
-# 기존 CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;] 명령
-17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5
-
-# 새로운 CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;] 명령
-2e50e1c939430406a23641225d384c1da7b9b7699f3a08b02596d4214ed1cd3d
-
-# 기존 RUN echo first 명령
-3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
-
-# 기존 COPY ./second.txt . 명령
-6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
-
-# 기존 ADD ./third.txt . 명령
-a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
-
-# 새로운 ADD ./third.txt . 명령
-b089e6d887fe05bada5545875ec3d97d55f5b41c4cba260a9c64b66fa30cddf8
-
-# 새로운 COPY ./new_second.txt . 명령
-c3f400b3c3b4a725e4bf150ce314a3ba006fb622ea3de26c04a5697dd3184327&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[도커 이미지 레이어 및 체인]]></title><description><![CDATA[이 글을 더 정확히 이해하기위해, 도커 중간 이미지 및 레이어를 먼저 읽어보시는것을 추천드립니다. 테스트 환경 OS: centos/7 Docker Version: 20.10.12 호스트 OS 및 Docker Version…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/docker-image-layer-and-chain/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/docker-image-layer-and-chain/</guid><pubDate>Sun, 09 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이 글을 더 정확히 이해하기위해, &lt;a href=&quot;/docker-intermediate-image&quot;&gt;도커 중간 이미지 및 레이어&lt;/a&gt;를 먼저 읽어보시는것을 추천드립니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 09 Jan 2022 01:42:00 GMT</lastBuildDate><item><title><![CDATA[도커 이미지 레이어 및 체인]]></title><description><![CDATA[이 글을 더 정확히 이해하기위해, 도커 중간 이미지 및 레이어를 먼저 읽어보시는것을 추천드립니다. 테스트 환경 OS: centos/7 Docker Version: 20.10.12 호스트 OS 및 Docker Version…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/docker-image-layer-and-chain/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/docker-image-layer-and-chain/</guid><pubDate>Sun, 09 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이 글을 더 정확히 이해하기위해, &lt;a href=&quot;/docker-intermediate-image&quot;&gt;도커 중간 이미지 및 레이어&lt;/a&gt;를 먼저 읽어보시는것을 추천드립니다.&lt;/p&gt;
 &lt;p&gt;테스트 환경&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -242,7 +26,8 @@ c3f400b3c3b4a725e4bf150ce314a3ba006fb622ea3de26c04a5697dd3184327&lt;/code&gt;&lt
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker history&lt;/code&gt; 명령으로 &lt;code class=&quot;language-text&quot;&gt;중간 이미지&lt;/code&gt;들의 &lt;code class=&quot;language-text&quot;&gt;사이즈&lt;/code&gt;를 확인합니다.&lt;/p&gt;
+&lt;h2&gt;도커 이미지 레이어&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker history&lt;/code&gt; 명령으로 각 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들의 &lt;code class=&quot;language-text&quot;&gt;사이즈&lt;/code&gt;를 확인합니다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/engine/reference/commandline/history/&quot;&gt;https://docs.docker.com/engine/reference/commandline/history/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -712,7 +497,223 @@ l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 020d8fd7aa9ec14fc8e6298631afc9a048372d43b23c54e17c93490eda0c22a3-init&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;이중, 020d8fd7aa9e…-init 은 컨테이너를 초기화를 위한 레이어이다.&lt;/p&gt;
-&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[코딩을 지탱하는 기술(1 ~ 3장)]]></title><description><![CDATA[1장 효율적으로 언어 배우기 1.…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/2018-07-27-coding-technique/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/2018-07-27-coding-technique/</guid><pubDate>Fri, 27 Jul 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1장 효율적으로 언어 배우기&lt;/h2&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[도커 빌드 캐시]]></title><description><![CDATA[이 글을 더 정확히 이해하기위해, 도커 중간 이미지 및 레이어를 먼저 읽어보시는것을 추천드립니다. 테스트 환경 OS: centos/7 Docker Version: 20.10.12 호스트 OS 및 Docker Version…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/docker-build-cache/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/docker-build-cache/</guid><pubDate>Sun, 09 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이 글을 더 정확히 이해하기위해, &lt;a href=&quot;/docker-intermediate-image&quot;&gt;도커 중간 이미지 및 레이어&lt;/a&gt;를 먼저 읽어보시는것을 추천드립니다.&lt;/p&gt;
+&lt;p&gt;테스트 환경&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;OS: centos/7&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Docker Version: 20.10.12&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;호스트 OS 및 Docker Version 에 따라, 이 글의 &lt;code class=&quot;language-text&quot;&gt;테스트 결과&lt;/code&gt;가 다를 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/38532483/where-is-var-lib-docker-on-mac-os-x&quot;&gt;Where is /var/lib/docker on Mac/OS X&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://memostack.tistory.com/3&quot;&gt;Mac 환경의 Docker 는 /var/lib/docker가 없다&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;도커 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt; 및 &lt;code class=&quot;language-text&quot;&gt;컨테이너&lt;/code&gt;가 초기화되어있습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;먼저, Dockerfile 생성합니다.&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;첫 번째 이미지를 생성한 경우&lt;/h2&gt;
+&lt;p&gt;우선 생성된 모든 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 저장되는 공간을 확인해보면, 모두 비어있는것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker build&lt;/code&gt; 명령으로, &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 이미지를 생성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# docker build -t docker-layers:0.0.1 .
+
+Sending build context to Docker daemon  4.096kB
+Step 1/5 : FROM alpine:latest
+latest: Pulling from library/alpine
+59bf1c3509f3: Pull complete
+Digest: sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300
+Status: Downloaded newer image for alpine:latest
+ ---&amp;gt; c059bfaa849c
+Step 2/5 : RUN echo first
+ ---&amp;gt; Running in 24aaa5617f83
+first
+Removing intermediate container 24aaa5617f83
+ ---&amp;gt; 3a18fe3979f0
+Step 3/5 : COPY ./second.txt .
+ ---&amp;gt; 6da5ddb808b7
+Step 4/5 : ADD ./third.txt .
+ ---&amp;gt; a537bad7aa2b
+Step 5/5 : CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;]
+ ---&amp;gt; Running in da1be8fb3579
+Removing intermediate container da1be8fb3579
+ ---&amp;gt; 17be1d9b9c5e
+Successfully built 17be1d9b9c5e
+Successfully tagged docker-layers:0.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420099-ad4170e4-2f5d-4aa1-a2b5-9244a1a0e767.png&quot; height=&quot;800&quot;&gt;
+&lt;blockquote&gt;
+&lt;p&gt;캐시된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 존재하지않는것을, 한번 더 확인할 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이제 &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 의 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 생성된것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
+
+c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
+3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
+6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
+a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
+17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;두번째 이미지를 생성한 경우&lt;/h2&gt;
+&lt;p&gt;먼저 &lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt; 디렉토리를 확인해보면, 이전 &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 이미지로부터
+생성된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들을 확인할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
+
+c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
+3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
+6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
+a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
+17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker build&lt;/code&gt; 명령으로, &lt;code class=&quot;language-text&quot;&gt;docker-layer:0.0.2&lt;/code&gt; 이미지를 생성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# docker build -t docker-layers:0.0.2 .
+
+Sending build context to Docker daemon  4.096kB
+Step 1/5 : FROM alpine:latest
+ ---&amp;gt; c059bfaa849c
+Step 2/5 : RUN echo first
+ ---&amp;gt; Using cache
+ ---&amp;gt; 3a18fe3979f0
+Step 3/5 : COPY ./second.txt .
+ ---&amp;gt; Using cache
+ ---&amp;gt; 6da5ddb808b7
+Step 4/5 : ADD ./third.txt .
+ ---&amp;gt; Using cache
+ ---&amp;gt; a537bad7aa2b
+Step 5/5 : CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;]
+ ---&amp;gt; Using cache
+ ---&amp;gt; 17be1d9b9c5e
+Successfully built 17be1d9b9c5e
+Successfully tagged docker-layers:0.0.2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420069-71291d1d-0d57-4b1f-bca2-ca9e4f2a99ec.png&quot; height=&quot;800&quot;&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.1&lt;/code&gt; 로 부터 캐시된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이, &lt;code class=&quot;language-text&quot;&gt;재 활용&lt;/code&gt;된것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;&lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt; 내용을 변경한 후, 이미지를 생성한 경우&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt; 디렉토리를 확인합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test sha256]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
+
+c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
+3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
+6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
+a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
+17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;기존 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt; 내용을 일부 수정합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;기존 &lt;code class=&quot;language-text&quot;&gt;이미지 체인&lt;/code&gt;에 변화를 주기위해, 컨테이너 &lt;code class=&quot;language-text&quot;&gt;파일 시스템&lt;/code&gt;에 영향을 주는 새로운 &lt;code class=&quot;language-text&quot;&gt;COPY&lt;/code&gt; 명령(&lt;code class=&quot;language-text&quot;&gt;COPY ./new_second.txt .&lt;/code&gt;)을 추가합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./new_second.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt; 에서 COPY 될 &lt;code class=&quot;language-text&quot;&gt;new_second.txt&lt;/code&gt; 파일을 생성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# echo new_second &amp;gt; new_second.txt &amp;amp;&amp;amp; ls
+
+Dockerfile  new_second.txt  second.txt  third.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker build&lt;/code&gt; 명령으로, &lt;code class=&quot;language-text&quot;&gt;docker-layers:0.0.3&lt;/code&gt; 이미지를 생성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test docker-layer]# docker build -t docker-layers:0.0.3 .
+
+Sending build context to Docker daemon   5.12kB
+Step 1/6 : FROM alpine:latest
+ ---&amp;gt; c059bfaa849c
+Step 2/6 : RUN echo first
+ ---&amp;gt; Using cache
+ ---&amp;gt; 3a18fe3979f0
+Step 3/6 : COPY ./second.txt .
+ ---&amp;gt; Using cache
+ ---&amp;gt; 6da5ddb808b7
+Step 4/6 : COPY ./new_second.txt .
+ ---&amp;gt; c3f400b3c3b4
+Step 5/6 : ADD ./third.txt .
+ ---&amp;gt; b089e6d887fe
+Step 6/6 : CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;]
+ ---&amp;gt; Running in 25d40b3f392a
+Removing intermediate container 25d40b3f392a
+ ---&amp;gt; 2e50e1c93943
+Successfully built 2e50e1c93943
+Successfully tagged docker-layers:0.0.3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420089-aaebece2-e80f-4046-982b-a7230009c3da.png&quot; height=&quot;800&quot;&gt;
+&lt;blockquote&gt;
+&lt;p&gt;일부 이미지(&lt;code class=&quot;language-text&quot;&gt;c059bfaa849c&lt;/code&gt; ~ &lt;code class=&quot;language-text&quot;&gt;6da5ddb808b7&lt;/code&gt;)들만 &lt;code class=&quot;language-text&quot;&gt;재 활용&lt;/code&gt;되었고, 추가된 &lt;code class=&quot;language-text&quot;&gt;COPY&lt;/code&gt; 명령과,&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;그 뒤의 모든 명령들이 새로운 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;로 추가되었습니다.&lt;/p&gt;
+&lt;p&gt;다시 &lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/content/sha256&lt;/code&gt; 디렉토리를 확인합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test ~]# ls /var/lib/docker/image/overlay2/imagedb/content/sha256
+
+c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
+3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
+6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
+c3f400b3c3b4a725e4bf150ce314a3ba006fb622ea3de26c04a5697dd3184327
+b089e6d887fe05bada5545875ec3d97d55f5b41c4cba260a9c64b66fa30cddf8
+2e50e1c939430406a23641225d384c1da7b9b7699f3a08b02596d4214ed1cd3d
+a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
+17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이전 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt; 목록에,&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;c059bfaa849c4d8e4aecaeb3a10c2d9b3d85f5165c66ad3a4d937758128c4d18
+3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
+6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
+a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
+17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;새로운 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;들이 더해진것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;c3f400b3c3b4a725e4bf150ce314a3ba006fb622ea3de26c04a5697dd3184327
+b089e6d887fe05bada5545875ec3d97d55f5b41c4cba260a9c64b66fa30cddf8
+2e50e1c939430406a23641225d384c1da7b9b7699f3a08b02596d4214ed1cd3d&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;캐시된 이미지가 무효화된 이유&lt;/h2&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420089-aaebece2-e80f-4046-982b-a7230009c3da.png&quot; height=&quot;800&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;이미지 레이어 체인&lt;/a&gt;의 &lt;code class=&quot;language-text&quot;&gt;부모/자식&lt;/code&gt; 관계로인해,
+추가된 이미지(&lt;code class=&quot;language-text&quot;&gt;new_second.txt&lt;/code&gt;) 이후의 이미지들이 바라보던 &lt;code class=&quot;language-text&quot;&gt;parent&lt;/code&gt; 의 변경과함께,
+새로운 이미지들이 추가되었고, 그로인해, 이전에 캐시된 이미지들을 사용할 수 없게된 것이다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;즉, 변경된 &lt;code class=&quot;language-text&quot;&gt;명령&lt;/code&gt; 이후의 &lt;code class=&quot;language-text&quot;&gt;모든 명령&lt;/code&gt;들은, 캐시된 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;를 사용하지않고, 새로운 &lt;code class=&quot;language-text&quot;&gt;이미지&lt;/code&gt;를 만들어냅니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;변경전 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;] &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148461729-44228c21-9209-4ac8-a30c-46b7facff7c7.png&quot; height=&quot;800&quot;&gt;
+&lt;p&gt;변경 후 &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; alpine:latest&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; echo first&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./second.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; ./new_second.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; ./third.txt .&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;echo&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;fourth&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/11391606/148420094-f817a05e-8d11-48d2-8ce2-04d90823ba0e.png&quot; height=&quot;800&quot;&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/var/lib/docker/image/overlay2/imagedb/metadata/sha256&lt;/code&gt; 목록입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shellscript&quot;&gt;&lt;pre class=&quot;language-shellscript&quot;&gt;&lt;code class=&quot;language-shellscript&quot;&gt;[root@docker-test sha256]# ls /var/lib/docker/image/overlay2/imagedb/metadata/sha256
+
+# 기존 CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;] 명령
+17be1d9b9c5ea8e703fabf23c45c374e79486f272aa552247b7e9cd6a5e97af5
+
+# 새로운 CMD [&amp;quot;echo&amp;quot;, &amp;quot;fourth&amp;quot;] 명령
+2e50e1c939430406a23641225d384c1da7b9b7699f3a08b02596d4214ed1cd3d
+
+# 기존 RUN echo first 명령
+3a18fe3979f0ba52526965cfa3fbfa44e9cb1a01fac9d8df3f8dea9a5b5cc895
+
+# 기존 COPY ./second.txt . 명령
+6da5ddb808b77a5e7f64bf7c134bdce69e1eb67c1c4afe4f8d0a4a0d1edfb1c2
+
+# 기존 ADD ./third.txt . 명령
+a537bad7aa2b21ea19666a67cc8ee66ffa151128ed07f20c17f1584e595ff9ca
+
+# 새로운 ADD ./third.txt . 명령
+b089e6d887fe05bada5545875ec3d97d55f5b41c4cba260a9c64b66fa30cddf8
+
+# 새로운 COPY ./new_second.txt . 명령
+c3f400b3c3b4a725e4bf150ce314a3ba006fb622ea3de26c04a5697dd3184327&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[코딩을 지탱하는 기술(1 ~ 3장)]]></title><description><![CDATA[1장 효율적으로 언어 배우기 1.…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/2018-07-27-coding-technique/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/2018-07-27-coding-technique/</guid><pubDate>Fri, 27 Jul 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1장 효율적으로 언어 배우기&lt;/h2&gt;
 &lt;h3&gt;1.1 비교를 통한 배움&lt;/h3&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;여러분이 지금 x라는 언어를 배우고 있고, 무엇이 중요하고 무엇이 그렇지 않은지 고민하고 있다고 가정해보자.
 
