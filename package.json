@@ -1,8 +1,8 @@
 {
-  "name": "Mohwa blog",
+  "name": "mohwa.github.io",
   "private": true,
-  "description": "",
-  "version": "0.1.0",
+  "description": "mohwa blog",
+  "version": "0.0.1",
   "author": "Mohwa <yanione2@gmail.com>",
   "dependencies": {
     "gatsby": "^4.4.0",
@@ -32,8 +32,7 @@
   "devDependencies": {
     "prettier": "^2.5.1"
   },
-  "homepage": "mohwa.github.io",
-  "main": "n/a",
+  "homepage": "http://mohwa.github.io",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -41,5 +40,13 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohwa/mohwa.github.io.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohwa/mohwa.github.io/issues"
   }
 }
