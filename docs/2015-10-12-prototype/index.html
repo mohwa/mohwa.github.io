@@ -1,0 +1,600 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.51799c192fa25789803b.css" data-identity="gatsby-global-css">@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-8d7d79679b70dbe27172b6460e7a7910.woff2) format("woff2"),url(/static/montserrat-latin-100-ec38980a9e0119a379e2a9b3dbb1901a.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e279051046ba1286706adc886cf1c96b.woff2) format("woff2"),url(/static/montserrat-latin-100italic-3b325a3173c8207435cd1b76e19bf501.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-9d266fbbfa6cab7009bd56003b1eeb67.woff2) format("woff2"),url(/static/montserrat-latin-200-2d8ba08717110d27122e54c34b8a5798.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-6e5b3756583bb2263eb062eae992735e.woff2) format("woff2"),url(/static/montserrat-latin-200italic-a0d6f343e4b536c582926255367a57da.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-00b3e893aab5a8fd632d6342eb72551a.woff2) format("woff2"),url(/static/montserrat-latin-300-ea303695ceab35f17e7d062f30e0173b.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-56f34ea368f6aedf89583d444bbcb227.woff2) format("woff2"),url(/static/montserrat-latin-300italic-54b0bf2c8c4c12ffafd803be2466a790.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-b71748ae4f80ec8c014def4c5fa8688b.woff2) format("woff2"),url(/static/montserrat-latin-400-0659a9f4e90db5cf51b50d005bff1e41.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-6eed6b4cbb809c6efc7aa7ddad6dbe3e.woff2) format("woff2"),url(/static/montserrat-latin-400italic-7583622cfde30ae49086d18447ab28e7.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-091b209546e16313fd4f4fc36090c757.woff2) format("woff2"),url(/static/montserrat-latin-500-edd311588712a96bbf435fad264fff62.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-c90ced68b46050061d1a41842d6dfb43.woff2) format("woff2"),url(/static/montserrat-latin-500italic-5146cbfe02b1deea5dffea27a5f2f998.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-0480d2f8a71f38db8633b84d8722e0c2.woff2) format("woff2"),url(/static/montserrat-latin-600-b77863a375260a05dd13f86a1cee598f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-cf46ffb11f3a60d7df0567f8851a1d00.woff2) format("woff2"),url(/static/montserrat-latin-600italic-c4fcfeeb057724724097167e57bd7801.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-7dbcc8a5ea2289d83f657c25b4be6193.woff2) format("woff2"),url(/static/montserrat-latin-700-99271a835e1cae8c76ef8bba99a8cc4e.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-c41ad6bdb4bd504a843d546d0a47958d.woff2) format("woff2"),url(/static/montserrat-latin-700italic-6779372f04095051c62ed36bc1dcc142.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-db9a3e0ba7eaea32e5f55328ace6cf23.woff2) format("woff2"),url(/static/montserrat-latin-800-4e3c615967a2360f5db87d2f0fd2456f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-bf45bfa14805969eda318973947bc42b.woff2) format("woff2"),url(/static/montserrat-latin-800italic-fe82abb0bcede51bf724254878e0c374.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-e66c7edc609e24bacbb705175669d814.woff2) format("woff2"),url(/static/montserrat-latin-900-8211f418baeb8ec880b80ba3c682f957.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-4454c775e48152c1a72510ceed3603e2.woff2) format("woff2"),url(/static/montserrat-latin-900italic-efcaa0f6a82ee0640b83a0916e6e8d68.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-fc117160c69a8ea0851b26dd14748ee4.woff2) format("woff2"),url(/static/merriweather-latin-300-58b18067ebbd21fda77b67e73c241d3b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-fe29961474f8dbf77c0aa7b9a629e4bc.woff2) format("woff2"),url(/static/merriweather-latin-300italic-23c3f1f88683618a4fb8d265d33d383a.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-d9479e8023bef9cbd9bf8d6eabd6bf36.woff2) format("woff2"),url(/static/merriweather-latin-400-040426f99ff6e00b86506452e0d1f10b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-2de7bfeaf08fb03d4315d49947f062f7.woff2) format("woff2"),url(/static/merriweather-latin-400italic-79db67aca65f5285964ab332bd65f451.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-4b08e01d805fa35d7bf777f1b24314ae.woff2) format("woff2"),url(/static/merriweather-latin-700-22fb8afba4ab1f093b6ef9e28a9b6e92.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-cd92541b177652fffb6e3b952f1c33f1.woff2) format("woff2"),url(/static/merriweather-latin-700italic-f87f3d87cea0dd0979bfc8ac9ea90243.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-f813fc6a4bee46eda5224ac7ebf1b7be.woff2) format("woff2"),url(/static/merriweather-latin-900-5d4e42cb44410674acd99153d57df032.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-b7901d85486871c1779c0e93ddd85656.woff2) format("woff2"),url(/static/merriweather-latin-900italic-9647f9fdab98756989a8a5550eb205c3.woff) format("woff")}
+
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden]{display:none}:root{--maxWidth-none:"none";--maxWidth-xs:20rem;--maxWidth-sm:24rem;--maxWidth-md:28rem;--maxWidth-lg:32rem;--maxWidth-xl:36rem;--maxWidth-2xl:42rem;--maxWidth-3xl:48rem;--maxWidth-4xl:56rem;--maxWidth-full:"100%";--maxWidth-wrapper:var(--maxWidth-2xl);--spacing-px:"1px";--spacing-0:0;--spacing-1:0.25rem;--spacing-2:0.5rem;--spacing-3:0.75rem;--spacing-4:1rem;--spacing-5:1.25rem;--spacing-6:1.5rem;--spacing-8:2rem;--spacing-10:2.5rem;--spacing-12:3rem;--spacing-16:4rem;--spacing-20:5rem;--spacing-24:6rem;--spacing-32:8rem;--fontFamily-sans:Montserrat,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--fontFamily-serif:"Merriweather","Georgia",Cambria,"Times New Roman",Times,serif;--font-body:var(--fontFamily-serif);--font-heading:var(--fontFamily-sans);--fontWeight-normal:400;--fontWeight-medium:500;--fontWeight-semibold:600;--fontWeight-bold:700;--fontWeight-extrabold:800;--fontWeight-black:900;--fontSize-root:16px;--lineHeight-none:1;--lineHeight-tight:1.1;--lineHeight-normal:1.5;--lineHeight-relaxed:1.625;--fontSize-0:0.833rem;--fontSize-1:1rem;--fontSize-2:1.2rem;--fontSize-3:1.44rem;--fontSize-4:1.728rem;--fontSize-5:2.074rem;--fontSize-6:2.488rem;--fontSize-7:2.986rem;--color-primary:#005b99;--color-text:#2e353f;--color-text-light:#4f5969;--color-heading:#1a202c;--color-heading-black:#000;--color-accent:#d1dce5}*,:after,:before{box-sizing:border-box}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:var(--fontSize-root);line-height:var(--lineHeight-normal)}body{color:var(--color-text);font-family:var(--font-body);font-size:var(--fontSize-1)}footer{padding:var(--spacing-6) var(--spacing-0)}hr{background:var(--color-accent);border:0;height:1px}h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);letter-spacing:-.025em;line-height:var(--lineHeight-tight);margin-bottom:var(--spacing-6);margin-top:var(--spacing-12)}h2,h3,h4,h5,h6{color:var(--color-heading);font-weight:var(--fontWeight-bold)}h1{color:var(--color-heading-black);font-size:var(--fontSize-6);font-weight:var(--fontWeight-black)}h2{font-size:var(--fontSize-5)}h3{font-size:var(--fontSize-4)}h4{font-size:var(--fontSize-3)}h5{font-size:var(--fontSize-2)}h6{font-size:var(--fontSize-1)}h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:inherit;text-decoration:none}p{--baseline-multiplier:0.179;--x-height-multiplier:0.35;line-height:var(--lineHeight-relaxed);margin:var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0)}ol,p,ul{padding:var(--spacing-0)}ol,ul{list-style-image:none;list-style-position:outside;margin-bottom:var(--spacing-8);margin-left:var(--spacing-0);margin-right:var(--spacing-0)}ol li,ul li{padding-left:var(--spacing-0)}li>p,ol li,ul li{margin-bottom:calc(var(--spacing-8)/2)}li :last-child{margin-bottom:var(--spacing-0)}li>ul{margin-left:var(--spacing-8);margin-top:calc(var(--spacing-8)/2)}blockquote{border-left:var(--spacing-1) solid var(--color-primary);color:var(--color-text-light);font-size:var(--fontSize-2);font-style:italic;margin-bottom:var(--spacing-8);margin-left:calc(var(--spacing-6)*-1);margin-right:var(--spacing-8);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6)}blockquote>:last-child{margin-bottom:var(--spacing-0)}blockquote>ol,blockquote>ul{list-style-position:inside}table{border-collapse:collapse;border-spacing:.25rem;margin-bottom:var(--spacing-8);width:100%}table thead tr th{border-bottom:1px solid var(--color-accent)}a{color:var(--color-primary)}a:focus,a:hover{text-decoration:none}.global-wrapper{margin:var(--spacing-0) auto;max-width:var(--maxWidth-wrapper);padding:var(--spacing-10) var(--spacing-5)}.global-wrapper[data-is-root-path=true] .bio{margin-bottom:var(--spacing-20)}.global-header{margin-bottom:var(--spacing-12)}.main-heading{font-size:var(--fontSize-7);margin:0}.post-list-item{margin-bottom:var(--spacing-8);margin-top:var(--spacing-8)}.post-list-item p{margin-bottom:var(--spacing-0)}.post-list-item h2{color:var(--color-primary);font-size:var(--fontSize-4);margin-bottom:var(--spacing-2);margin-top:var(--spacing-0)}.post-list-item header{margin-bottom:var(--spacing-4)}.header-link-home{font-family:var(--font-heading);font-size:var(--fontSize-2);font-weight:var(--fontWeight-bold);text-decoration:none}.bio{display:flex;margin-bottom:var(--spacing-16)}.bio-avatar,.bio p{margin-bottom:var(--spacing-0)}.bio-avatar{border-radius:100%;margin-right:var(--spacing-4);min-width:50px}.blog-post header h1{margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}.blog-post header p{font-family:var(--font-heading);font-size:var(--fontSize-2)}.blog-post-nav ul{margin:var(--spacing-0)}.gatsby-highlight{margin-bottom:var(--spacing-8)}@media (max-width:42rem){blockquote{margin-left:var(--spacing-0);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4)}ol,ul{list-style-position:inside}}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#000;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;text-align:left;text-shadow:0 1px #fff;white-space:pre;word-break:normal;word-spacing:normal}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{background:#b3d4fc;text-shadow:none}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{background:hsla(0,0%,100%,.5);color:#9a6e3a}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 4.4.0"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="alternate" type="application/rss+xml" title="Gatsby Starter Blog RSS Feed" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><title data-react-helmet="true">객체 지향 언어의 두 가지 줄기 | Mohwa Blog</title><meta data-react-helmet="true" name="description" content="객체 지향 언어의 두 가지 줄기"/><meta data-react-helmet="true" property="og:title" content="객체 지향 언어의 두 가지 줄기"/><meta data-react-helmet="true" property="og:description" content="객체 지향 언어의 두 가지 줄기"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="kylemathews"/><meta data-react-helmet="true" name="twitter:title" content="객체 지향 언어의 두 가지 줄기"/><meta data-react-helmet="true" name="twitter:description" content="객체 지향 언어의 두 가지 줄기"/><link as="script" rel="preload" href="/webpack-runtime-c05453a4f261001a3e1d.js"/><link as="script" rel="preload" href="/framework-febcad13c076d6f57fc1.js"/><link as="script" rel="preload" href="/app-067d69667d8e68d64837.js"/><link as="script" rel="preload" href="/commons-64392756f7d1b512fecf.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-eb1bee5882c22ac51823.js"/><link as="fetch" rel="preload" href="/page-data/2015-10-12-prototype/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/2841359383.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3257411868.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><header class="global-header"><a class="header-link-home" href="/">Mohwa Blog</a></header><main><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">객체 지향 언어의 두 가지 줄기</h1><p>October 16, 2015</p></header><section itemProp="articleBody"><h2>1. 정의</h2>
+<ul>
+<li>
+<p><strong>객체 지향 언어</strong>는 크게 두 가지 줄기로 나눌수 있다.</p>
+<ul>
+<li>
+<p><strong>클래스 기반 언어</strong>(C++, Java, C#, Ruby, Python 등)</p>
+</li>
+<li>
+<p><a href="https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85_%EA%B8%B0%EB%B0%98_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D">프로토타입 기반 언어</a></p>
+<ul>
+<li>
+<p>아래는 그나마 많이 알려진 <strong>프로토타입 기반언어</strong>를 나열해보았다.</p>
+<ul>
+<li><a href="http://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8">JavaScript</a>, <a href="http://ko.wikipedia.org/wiki/%EC%95%A1%EC%85%98%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8">ActionScript</a>, <a href="https://ko.wikipedia.org/wiki/J%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8">JScript</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="http://skyul.tistory.com/84">클래스 기반 &#x26; 프로토타입 기반 객체 지향 언어</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>클래스 기반 언어</strong>와 <strong>프로토타입 기반언어</strong>의 차이</p>
+<ul>
+<li>
+<p>클래스 기반 언어</p>
+<ul>
+<li>
+<p><strong>클래스 기반 언어</strong>에서는, <span style="color:#c11f1f">객체의 형식이 정의된</span> <a href="https://msdn.microsoft.com/ko-kr/library/x9afc042.aspx">클래스</a>라는 <strong>개념</strong>을 가진다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">
+<span class="token comment">// 클래스를 선언한다.</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Field</span>
+  <span class="token keyword">public</span> string name<span class="token punctuation">;</span>
+
+  <span class="token comment">// Constructor that takes no arguments.</span>
+  <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    name <span class="token operator">=</span> <span class="token string">"unknown"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Constructor that takes one argument.</span>
+  <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token parameter">string nm</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    name <span class="token operator">=</span> nm<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Method</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">SetName</span><span class="token punctuation">(</span><span class="token parameter">string newName</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    name <span class="token operator">=</span> newName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// person1 변수는 Person 클래스를 통해 생성된 객체를 참조하게된다.</span>
+Person person1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>
+<p><strong>클래스 기반 언어</strong>만의 <a href="https://msdn.microsoft.com/ko-kr/library/ms173149.aspx">상속</a> <strong>개념</strong>을 가진다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Employee: 상속 클래스</span>
+<span class="token comment">// Manager: 파생 클래스</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Manager</span> <span class="token operator">:</span> Employee
+<span class="token punctuation">{</span>
+  <span class="token comment">// Employee fields, properties, methods and events are inherited</span>
+  <span class="token comment">// New Manager fields, properties, methods and events go here...</span>
+<span class="token punctuation">}</span>		</code></pre></div>
+</li>
+<li>
+<p>[번외] 그럼 <strong>클래스 기반 언어</strong>의 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html">클래스</a>는 어떻게 생성되었을까?</p>
+<ul>
+<li>
+<p><a href="https://kldp.org/node/63651">아래 글은 “skyul” 님의 글을 발췌한 내용입니다</a></p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">
+프로토타입 기반 <span class="token constant">OO</span>는 객체를 직접 이용하는데 비해<span class="token punctuation">,</span> 클래스 기반의 <span class="token constant">OO</span>는 클래스라는 틀을 이용해서 객체를 생성하죠<span class="token punctuation">.</span>
+
+자연스럽게 나오는 질문은 <span class="token string">"그럼 클래스는 대체 어디서 나온 것인가?"</span>라는 거죠<span class="token punctuation">.</span>
+
+대표적 클래스 기반 <span class="token constant">OO</span>인 Java는 클래스도 객체로 봅니다<span class="token punctuation">.</span> 그런데 클래스가 객체면 클래스를 찍어낸 클래스가 있어야 합니다<span class="token punctuation">.</span> 클래스를 찍어낸 클래스도 객체이므로<span class="token punctuation">,</span> 클래스를 찍어낸 클래스를 만드는 클래스도 있어야 합니다<span class="token punctuation">.</span> 
+
+이렇게 무한히 반복 되기 때문에 <span class="token string">"inifnite regress problem of classes"</span>라고 불리는 것이죠<span class="token punctuation">.</span>
+
+Java는 이 문제를 java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Class가 모든 클래스의 틀이라고 이야기하면서<span class="token punctuation">,</span> 은근 슬쩍 넘어갔지만 여기에 숨은 논리적인 문제를 확실히 못풀고 <span class="token string">"태초에 Class가 있었다"</span>라는 해법이 나와버리는거죠<span class="token punctuation">.</span>
+
+다른 접근 방법을 취한 언어가 있는지 모르겠지만<span class="token punctuation">,</span> 대부분의 클래스 기반 언어는 클래스는 second<span class="token operator">-</span>order citizen으로 특별히 취급해서 찍어낼 수 있는 틀은 원래 있었다라고 얘기하게 되는거죠<span class="token punctuation">.</span>
+
+그 대상이 클래스라는 거만 제외하면 접근 방법은 프로토타입 방식과 크게 다르지 않은 거고요<span class="token punctuation">.</span></code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>프로토타입 기반 언어</p>
+<ul>
+<li>
+<p><strong>프로토타입 기반 언어</strong>에서는 <a href="https://msdn.microsoft.com/ko-kr/library/x9afc042.aspx">클래스</a>라는 <strong>개념</strong>이 존재하지 않으며, 여러 종류의 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects">Built-in 객체</a>들이 시스템상에 존재하게된다. 또한 <strong>클래스 기반언어</strong>의 <a href="https://msdn.microsoft.com/ko-kr/library/ms173149.aspx">상속</a> 개념과 달리, <span style="color:#c11f1f">객체 원형</span>의 <span style="color:#c11f1f">위임</span> 과정을 통해 <strong>상속</strong> 과정이 구현된다.</p>
+<ul>
+<li>
+<p><strong>프로토타입 기반 언어</strong>는 <a href="https://msdn.microsoft.com/ko-kr/library/x9afc042.aspx">클래스</a>가 존재하지 않는다.</p>
+<ul>
+<li>
+<p>함수 객체는 클래스가 아닌 <strong>First-Class Objects</strong>이다.<p></p>
+</li>
+<li>
+<p>선언된 함수 객체는, <strong>프로토타입 기반 언어</strong>의 특징인, <strong>위임</strong> 과정을 통해 만들어진 객체의 <span style="color:#c11f1f">원형</span>을 참조하고있다.</p>
+</li>
+<li>
+<p>즉, JS <strong>함수</strong>는 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions">Function</a> 생성자 함수 객체의 <span style="color:#c11f1f">원형</span>(Function.prototype)을 <strong>참조</strong>하는 또 다른 <strong>함수 객체</strong>일뿐이다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">
+<span class="token comment">// A 함수 객체를 선언한다.</span>
+<span class="token keyword">function</span> <span class="token constant">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 선언된 A 함수 객체의 데이터 타입은 function 타입을 반환한다.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token constant">A</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// function</span>
+
+<span class="token comment">// 선언된 A 함수 객체의 생성자 함수는 Function 생성자 함수 객체를 가리키고있다.</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token class-name">A</span><span class="token punctuation">.</span>constructor<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Function</span>
+
+<span class="token comment">// 선언된 A 함수 객체의 생성자 함수 객체</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>Function<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Function</span>
+
+<span class="token comment">// 선언된 A 함수 객체는 위임 과정을 통해, 자신을 만든 생성자 함수(Function) 객체의 원형(Function.prototype)을 참조하고 있다.</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token constant">A</span><span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 선언된 A 함수 객체로 위임된 원형과 Function 생성자 함수 객체의 원형 비교(동일하다)</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token constant">A</span><span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></code></pre></div>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_2.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>JS <strong>Built-in 객체</strong> 중 하나인 <strong>Array</strong> 객체</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Banana"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 배열의 길이를 반환한다.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fruits<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2</span></code></pre></div>
+</li>
+<li>
+<p>객체 원형 및 <strong>위임</strong> 과정</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Object 생성자 함수 객체로 새로운 객체를 생성한다.</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 생성된 새로운 객체</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 새로운 객체로 위임된 Object 생성자 함수 객체의 원형</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Object 생성자 함수 객체의 원형</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 새로운 객체로 위임된 원형과 Object 생성자 함수 객체의 원형 비교(동일하다)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// 위임 과정을 통해 toString 메서드를 사용할 수 있다.</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>toString<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_1.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>클래스 기반 언어</strong>는 보통 <a href="http://ko.wikipedia.org/wiki/%EC%9E%90%EB%A3%8C%ED%98%95_%EC%B2%B4%EA%B3%84#.EC.A0.95.EC.A0.81_.EC.A0.95.ED.98.95">정적 언어</a>를 말하며, JS 와 같은 <a href="http://ko.wikipedia.org/wiki/%EC%9E%90%EB%A3%8C%ED%98%95_%EC%B2%B4%EA%B3%84#.EB.8F.99.EC.A0.81_.EC.A0.95.ED.98.95">동적 언어</a>는 <span style="color:#c11f1f">컴파일 시점</span>이 아닌 <span style="color:#c11f1f">런타임 시점</span>에서 <span style="color:#6298c1">정적 언어</span>가 다루는 특정 일(<a href="http://ko.wikipedia.org/wiki/%EC%9E%90%EB%A3%8C%ED%98%95_%EC%B2%B4%EA%B3%84#.EC.9E.90.EB.A3.8C.ED.98.95_.EA.B2.80.EC.82.AC">자료형 검사</a>, <a href="https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C">함수 오버로드</a>, 동적 디스패치 등)들을 수행하게된다.</p>
+<ul>
+<li>
+<p>정적/<a href="http://ko.wikipedia.org/wiki/%EB%8F%99%EC%A0%81_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%EC%96%B8%EC%96%B4">동적</a> 언어란?</p>
+<ul>
+<li>
+<p>정적언어<p></p>
+<ul>
+<li>
+<p><strong>컴파일 시점</strong>에서 자료형 검사가 이루어진다.<p></p>
+</li>
+<li>
+<p><strong>컴파일 시점</strong>의 자료형 검사로 인해 <strong>런타임 시점</strong>에서는 자료형에 대한 많은 오류를 줄일 수 있다.(단 컴파일 시점에서 결정될 수 있는 자료형 정보만이 평가(검사)된다)<p></p>
+</li>
+<li>
+<p><strong>컴파일 시점</strong>에서의 자료형 검사를 반복할 필요가 없기때문에, 전체 <strong>프로그램 실행 시간</strong>이 줄어든다.<p></p>
+</li>
+</ul>
+</li>
+<li>
+<p>동적언어</p>
+<ul>
+<li>
+<p><strong>런타임 시점</strong>에서 자료형 검사가 이루어진다.<p></p>
+</li>
+<li>
+<p><strong>런타임 시점</strong>의 자료형 검사로 인해 자료형에 대한 <strong>런타임 오류</strong>가 발생할 수 있다.(빈도수가 생각보다 많을수있다)<p></p>
+</li>
+<li>
+<p>모든 <strong>런타임 객체</strong>가 자료형에 대한 정보를 가지고 있으며, 이를 통해 <a href="https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C">함수 오버로드</a>, <span style="color:#6298c1">동적 디스패치</span> 등을 수행할 수 있다.(<a href="https://ko.wikipedia.org/wiki/%EB%8F%99%EC%A0%81_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%EC%96%B8%EC%96%B4">동적 언어</a>가 가지는 유연성)<p></p>
+</li>
+<li>
+<p>변수는 모든 자료형을 가질 수 있다.<p></p>
+<ul>
+<li>
+<p><strong>JS 동적 타이핑</strong><p></p>
+<ul>
+<li><em>자바스크립트는 느슨한 타입 (loosely typed) 언어, 혹은 동적 (dynamic) 언어이다. 그 말은, 변수의 타입을 미리 선언할 필요가 없다는 뜻이다. 타입은 프로그램이 처리되는 과정에서 자동으로 파악될 것이다. 또한 그 말은 같은 변수에 여러 타입의 값을 넣을 수 있다는 뜻이다.</em><p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures">자바스크립트의 자료형</a><p></p>
+</li>
+<li>
+<p><a href="http://pyrasis.com/book/GoForTheReallyImpatient/Unit01">Go 언어란? 정적 타입과 동적 타입에 대한 이야기</a></p>
+</li>
+<li>
+<p><strong>런타임 시점</strong>에서 자료형 검사가 이루어진다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">
+<span class="token comment">// global execution context</span>
+
+<span class="token comment">// 원시 타입인 string 타입을 할당한다.</span>
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token string">'str'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 원시 타입인 number 타입을 할당한다.</span>
+x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">// object 타입을 할당한다.</span>
+x <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// object</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>런타임 시점</strong>의 자료형 검사로 인해 자료형에 대한 <strong>런타임 오류</strong>가 발생할 수 있다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">
+  <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token string">'1'</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    num<span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// runtime error</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// num.toFixed is not a function</span>
+  <span class="token punctuation">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>모든 <strong>런타임 객체</strong>가 자료형에 대한 정보를 가지고 있으며, 이를 통해 <a href="https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98_%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C">함수 오버로드</a>, <span style="color:#6298c1">동적 디스패치</span> 등을 수행할 수 있다.</p>
+<ul>
+<li>
+<p>JS 는 기본적으로 <strong>함수 오버로드</strong>를 지원하지 않으며, 아래와 같은 방법으로 구현 가능하다.<p></p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">
+<span class="token comment">// 함수 오버로드 구현</span>
+<span class="token keyword">function</span> <span class="token constant">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+  <span class="token keyword">var</span> args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>args<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>args<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token constant">A</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+<span class="token constant">A</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2</span>
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>2. 프로토타입 언어에서 객체를 생성하는 두 가지 방법</h2>
+<ul>
+<li>
+<p>무에서 <strong>객체</strong>를 생성하는 방법(<span style="color:#c11f1f">원형</span> 객체가 없는 상태에서 객체를 생성하는 방법)</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">	<span class="token comment">// 원형 객체가 없는 상태에서 객체를 생성하는 방법(일부 브라우저를 통해 아래와 같은 무형 객체를 구현할 수 있다)</span>
+	<span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	instance<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+	console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> instance<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// object</span></code></pre></div>
+<p><img src="https://www.dropbox.com/s/ucpd5x23mdd1581/44.jpg?dl=1" alt=""></p>
+</li>
+<li>
+<p>유에서 객체를 생성하는 방법(<span style="color:#c11f1f">원형</span> 객체가 존재하는 상태에서 객체를 생성하는 방법)</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">	<span class="token comment">// 원형 객체가 존재하는 상태에서 객체를 생성하는 방법(일반적인 위임 과정을 거친 객체)</span>
+	<span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> instance<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// object</span></code></pre></div>
+<p><img src="https://www.dropbox.com/s/8eeliasbb29qatz/45.jpg?dl=1" alt=""></p>
+</li>
+<li>
+<p>보통 <strong>프로토타입 기반 언어</strong>에는 <strong>Object 객체</strong>(Master Object)가 존재하며, 이 객체의 <span style="color:#c11f1f">원형</span>에는 모든 <strong>객체</strong>가 공통적으로 필요한 <span style="color:#c11f1f">특징</span>(속성, 메서드)들이 <strong>정의</strong>되어있다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// A 함수 객체를 선언한다.</span>
+<span class="token keyword">function</span> <span class="token constant">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token class-name">A</span><span class="token punctuation">.</span>constructor<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object.prototype</span>
+
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 나를 만든 생성자 함수 객체의 원형</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object.prototype</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object.prototype</span></code></pre></div>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_3.png" alt=""></p>
+</li>
+</ul>
+<h2>3. 위임 과정에 대해</h2>
+<ul>
+<li>
+<p>JS는 <strong>프로토타입 기반 언어</strong>의 특징인 <strong>위임</strong> 과정을 따른다.</p>
+</li>
+<li>
+<p>모든 <strong>위임</strong> 과정은 <a href="http://ko.wikipedia.org/wiki/%EB%9F%B0%ED%83%80%EC%9E%84">런타임</a> 시점에서 이루어진다.</p>
+</li>
+<li>
+<p><strong>위임</strong>이란 객체들간의 <span style="color:#c11f1f">원형 복제 과정</span>을 말한다.</p>
+</li>
+<li>
+<p><strong>위임</strong>된 객체 <span style="color:#c11f1f">원형</span>은 값(value)이 아닌 <span style="color:#c11f1f">참조 값</span>(reference of value)을 갖는다.</p>
+</li>
+<li>
+<p><strong>위임</strong>된 객체 <span style="color:#c11f1f">원형</span>은 해당 객체의 특징(속성, 메서드)들을 <strong>공유</strong>하기위해 사용된다.</p>
+<ul>
+<li>
+<p>A 함수 객체에 대한 <strong>위임</strong> 결과.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// A 함수 객체를 선언한다.</span>
+<span class="token keyword">function</span> <span class="token constant">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token constant">A</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>A</strong>: 선언된 A 함수 객체</p>
+</li>
+<li>
+<p><strong>A.prototype</strong>: 나를 통해 생성될 객체의 <span style="color:#c11f1f">원형</span></p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">```javascript
+console.log(A.prototype === new A().__proto__); // true
+```</code></pre></div>
+</li>
+<li>
+<p><strong>A.__proto__</strong>: 나를 만든 생성자 함수 객체의 <span style="color:#c11f1f">원형</span></p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">```javascript
+console.log(A.__proto__ === Function.prototype); // true
+```</code></pre></div>
+</li>
+<li>
+<p><strong>A.constructor</strong>: 나를 만든 생성자 함수 객체</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">```javascript
+console.log(A.constructor === Function); // true
+```</code></pre></div>
+</li>
+</ul>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_4.png" alt=""></p>
+<ul>
+<li>
+<p>objA 객체에 대한 <strong>위임</strong> 결과.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// A 함수 객체를 선언한다.</span>
+<span class="token keyword">function</span> <span class="token constant">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">// A 생성자 함수 객체를 통해 새로운 객체를 생성한다.</span>
+<span class="token keyword">var</span> objA <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>objA<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>
+<p><strong>objA</strong>: 생성된 objA 객체</p>
+</li>
+<li>
+<p><strong>objA.__proto__</strong>: 나를 만든 생성자 함수 객체의 원형</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>objA<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token class-name">A</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></code></pre></div>
+</li>
+<li>
+<p><strong>A.constructor</strong>: 나를 만든 생성자 함수 객체</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>objA<span class="token punctuation">.</span>constructor <span class="token operator">===</span> <span class="token constant">A</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></code></pre></div>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_5.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>위임</strong>받은 자식 객체는 부모 객체의 <span style="color:#c11f1f">원형</span>을 참조하고 있기 때문에, 자식 객체로 부터 부모 객체의 <span style="color:#c11f1f">원형</span>이 변조될 수 있다.(이로인해 아주 위험한 상황이 연출될 수 있다)</p>
+<ul>
+<li>
+<p>부모 객체: A 생성자 함수 객체</p>
+</li>
+<li>
+<p>자식 객체: objA 변수가 참조하는 객체(new A)</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">
+<span class="token comment">// A 함수 객체를 선언한다.</span>
+<span class="token keyword">function</span> <span class="token constant">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> objA <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">A</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 자식 객체를 통해 부모 객체의 원형(A.prototype)을 변조한다.</span>
+<span class="token comment">// objA.__proto__ === A.prototype</span>
+objA<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span><span class="token function-variable function">getConstructor</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>constructor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token class-name">A</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">getConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// A 생성자 함수 객체</span></code></pre></div>
+</li>
+</ul>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_6.png" alt=""></p>
+</li>
+<li>
+<p><strong>위임</strong> 받은 자식 객체는 원하는 <strong>특징</strong>(속성, 메서드)에 도달하기위해, 각 <strong>객체</strong>들이 가진 <span style="color:#c11f1f">원형</span>을 연속적으로 따라가 찾아내게된다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// parent 객체는 id 속성 값을 가지고 있다.</span>
+<span class="token keyword">var</span> parent <span class="token operator">=</span> <span class="token punctuation">{</span>
+	id<span class="token operator">:</span> <span class="token string">'parentId'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// child1 객체는 name 속성 값을 가지고 있다.</span>
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	name<span class="token operator">:</span> <span class="token string">'child1Name'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// child2 객체는 각 속성 값을 반환받는 get 접근자 메서드를 가지고 있다.</span>
+<span class="token keyword">var</span> child2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function-variable function">getId</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token function-variable function">getName</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// parent 객체의 모든 특징(속성, 메서드)들을 child1 객체 원형으로 위임한다.</span>
+child1<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> parent<span class="token punctuation">;</span>
+<span class="token comment">// child1 객체의 모든 특징(속성, 메서드)들을 child2 객체 원형으로 위임한다.</span>
+child2<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> child1<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>child2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// parentId</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// child1Name</span></code></pre></div>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_7.png" alt=""></p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// parent 객체는 id 속성 값을 가지고 있다.</span>
+<span class="token keyword">var</span> parent <span class="token operator">=</span> <span class="token punctuation">{</span>
+	id<span class="token operator">:</span> <span class="token string">'parentId'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// child1 객체는 name 속성 값을 가지고 있다.</span>
+<span class="token keyword">var</span> child1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	name<span class="token operator">:</span> <span class="token string">'child1Name'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// child2 객체는 각 속성 값(id, name)과 그것들을 반환하는 get 접근자 메서드를 가지고 있다.</span>
+<span class="token keyword">var</span> child2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	id<span class="token operator">:</span> <span class="token string">'child2Id'</span><span class="token punctuation">,</span>
+	name<span class="token operator">:</span> <span class="token string">'child2Name'</span><span class="token punctuation">,</span>
+	<span class="token function-variable function">getId</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token function-variable function">getName</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// parent 객체의 모든 특징(속성, 메서드)들을 child1 객체 원형으로 위임한다.</span>
+child1<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> parent<span class="token punctuation">;</span>
+<span class="token comment">// child1 객체의 모든 특징(속성, 메서드)들을 child2 객체 원형으로 위임한다.</span>
+child2<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> child1<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>child2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// child2Id</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// child2Name</span></code></pre></div>
+<p><img src="http://mohwa.github.io/blog/assets/images/posts/20151012/prototype_8.png" alt=""></p>
+</li>
+<li>
+<p>또한, <strong>프로토타입</strong> 검색 범위는 동적으로 변경될 수 있다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	instance<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> <span class="token punctuation">{</span>
+		x<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		y<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		z<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 런타임 시점에서 객체가 확장된다.</span>
+<span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p><img src="https://www.dropbox.com/s/1f9j861jn09w3sp/11.jpg?dl=1" alt=""></p>
+</li>
+</ul>
+<h2>4. 연쇄 과정에 대해</h2>
+<ul>
+<li>
+<p><strong>순수 프로토타입</strong>은 <strong>연쇄적 프로토타입</strong>이라고도 한다.</p>
+</li>
+<li>
+<p><strong>연쇄</strong>란 객체들간의 <span style="color:#c11f1f">원형 복제 과정</span>을 말한다.</p>
+</li>
+<li>
+<p><strong>연쇄</strong>된 객체 원형은 <span style="color:#c11f1f">참조 값</span>(reference of value)이 아닌 <strong>원본</strong>으로부터 <span style="color:#c11f1f">복제된</span> 객체 값(value)을 갖는다.</p>
+</li>
+<li>
+<p><strong>연쇄</strong>된 자식 객체는 원본 객체로부터 <span style="color:#c11f1f">복제된 원형</span>을 참조하기 때문에, 자식 객체를 통해 원본 객체의 특징들이 <strong>변조</strong>될 수 없다.</p>
+</li>
+<li>
+<p><strong>연쇄</strong>된 자식 객체는 원하는 <strong>특징</strong>(속성, 메서드)에 도달하기위해, 각 <strong>객체</strong>들이 가진 <span style="color:#c11f1f">원형</span>을 연속적으로 따라가 찾아내게된다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// 원본 객체</span>
+<span class="token keyword">var</span> instance1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	id<span class="token operator">:</span> <span class="token string">'yanione'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 자식 객체</span>
+<span class="token keyword">var</span> instance2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	name<span class="token operator">:</span> <span class="token string">'mohwa'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 클론 함수</span>
+<span class="token keyword">function</span> <span class="token function">clone</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>obj <span class="token operator">||</span> obj<span class="token punctuation">.</span>constructor <span class="token operator">!==</span> Object<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">var</span> clone <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> n <span class="token keyword">in</span> obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
+		clone<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> obj<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span> clone<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 원본 객체를 복제한다.</span>
+<span class="token keyword">var</span> cloneInstance <span class="token operator">=</span> <span class="token function">clone</span><span class="token punctuation">(</span>instance1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 복제된 원본 객체를 자식 객체의 원형으로 연쇄한다.</span>
+instance2<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> cloneInstance<span class="token punctuation">;</span>
+
+<span class="token comment">// 자식 객체가 연쇄받은 원본 객체의 속성 값을 변경한다.</span>
+instance2<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token string">'mohwa'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 이전 위임 과정과 달리 자식 객체로 인해 원본 객체의 원형이 변조되지 않는다.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instance1<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// yanione</span></code></pre></div>
+</li>
+<li>
+<p>연쇄 방식의 프로토타입 검색 범위는 정적(연쇄 시점에 의해)으로 고정된다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// 원본 객체</span>
+<span class="token keyword">var</span> instance1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	id<span class="token operator">:</span> <span class="token string">'yanione'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 자식 객체</span>
+<span class="token keyword">var</span> instance2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+	name<span class="token operator">:</span> <span class="token string">'mohwa'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 클론 함수</span>
+<span class="token keyword">function</span> <span class="token function">clone</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>obj <span class="token operator">||</span> obj<span class="token punctuation">.</span>constructor <span class="token operator">!==</span> Object<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">var</span> clone <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> n <span class="token keyword">in</span> obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
+		clone<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> obj<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span> clone<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 원본 객체를 복제한다.</span>
+<span class="token keyword">var</span> cloneInstance <span class="token operator">=</span> <span class="token function">clone</span><span class="token punctuation">(</span>instance1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 복제된 원본 객체를 자식 객체의 원형으로 연쇄한다.</span>
+instance2<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> cloneInstance<span class="token punctuation">;</span>
+
+<span class="token comment">// 원본 객체를 동적으로 확장시킨다.</span>
+instance1<span class="token punctuation">.</span><span class="token function-variable function">getId</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 자식 객체는 연쇄 시점의 복제된 원본 객체의 원형을 참조하고 있기때문에, 동적으로 확장된 원본 객체의 특성을 갖지 못한다.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instance2<span class="token punctuation">.</span>getId<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span></code></pre></div>
+</li>
+</ul></section><hr/><footer><div class="bio"><div data-gatsby-image-wrapper="" style="width:50px;height:50px" class="gatsby-image-wrapper bio-avatar"><div aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear;background-color:#080808;width:50px;height:50px;position:relative"></div><picture><source type="image/avif" data-srcset="/static/e28f1a38a3d92750f864f3189580fe2d/d4bf4/mohwa.avif 50w,/static/e28f1a38a3d92750f864f3189580fe2d/ee81f/mohwa.avif 100w" sizes="50px"/><source type="image/webp" data-srcset="/static/e28f1a38a3d92750f864f3189580fe2d/3faea/mohwa.webp 50w,/static/e28f1a38a3d92750f864f3189580fe2d/6a679/mohwa.webp 100w" sizes="50px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="50px" decoding="async" loading="lazy" data-src="/static/e28f1a38a3d92750f864f3189580fe2d/e5610/mohwa.png" data-srcset="/static/e28f1a38a3d92750f864f3189580fe2d/e5610/mohwa.png 50w,/static/e28f1a38a3d92750f864f3189580fe2d/e9b55/mohwa.png 100w" alt="Profile picture"/></picture><noscript><picture><source type="image/avif" srcSet="/static/e28f1a38a3d92750f864f3189580fe2d/d4bf4/mohwa.avif 50w,/static/e28f1a38a3d92750f864f3189580fe2d/ee81f/mohwa.avif 100w" sizes="50px"/><source type="image/webp" srcSet="/static/e28f1a38a3d92750f864f3189580fe2d/3faea/mohwa.webp 50w,/static/e28f1a38a3d92750f864f3189580fe2d/6a679/mohwa.webp 100w" sizes="50px"/><img data-gatsby-image-ssr="" layout="fixed" data-main-image="" style="opacity:0" sizes="50px" decoding="async" loading="lazy" src="/static/e28f1a38a3d92750f864f3189580fe2d/e5610/mohwa.png" srcSet="/static/e28f1a38a3d92750f864f3189580fe2d/e5610/mohwa.png 50w,/static/e28f1a38a3d92750f864f3189580fe2d/e9b55/mohwa.png 100w" alt="Profile picture"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1)}}</script></div><p>Written by <strong>mohwa</strong> <!-- --> </p></div></footer></article><nav class="blog-post-nav"><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/2015-10-02-yo-generator/">← <!-- -->Yeoman-Generator</a></li><li><a rel="next" href="/2015-08-06-objectpool-inJS/">ObjectPool in JS<!-- --> →</a></li></ul></nav></main><footer></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/2015-10-12-prototype/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2af0ac87c1df2314a0f7.js"],"app":["/app-067d69667d8e68d64837.js"],"component---src-pages-404-js":["/component---src-pages-404-js-d6b40f0791d388486844.js"],"component---src-pages-index-js":["/component---src-pages-index-js-a7bf25b5db94cad645c4.js"],"component---src-pages-using-typescript-tsx":["/component---src-pages-using-typescript-tsx-c4c30132bc24003fee52.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-eb1bee5882c22ac51823.js"]};/*]]>*/</script><script src="/polyfill-2af0ac87c1df2314a0f7.js" nomodule=""></script><script src="/component---src-templates-blog-post-js-eb1bee5882c22ac51823.js" async=""></script><script src="/commons-64392756f7d1b512fecf.js" async=""></script><script src="/app-067d69667d8e68d64837.js" async=""></script><script src="/framework-febcad13c076d6f57fc1.js" async=""></script><script src="/webpack-runtime-c05453a4f261001a3e1d.js" async=""></script></body></html>
