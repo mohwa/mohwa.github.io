@@ -130,7 +130,17 @@ Successfully tagged docker-layers:0.0.1
 
 - https://docs.docker.com/engine/reference/commandline/images/
 
-<img src="https://user-images.githubusercontent.com/11391606/148420107-e89e0047-5f17-4f20-8481-f0bb5a69d129.png" width="700" />
+```mermaid
+flowchart TB
+    subgraph IL["Intermediate Images"]
+        direction LR
+        LAYER1[FROM alpine:latest]-.->IL1["Image Layer1(c059bfaa849c)/5.59MB"]
+        LAYER2[RUN echo first]-.->IL2["Intermediate Image Layer2(c1ee277ee0b6)/0B"]     
+        LAYER3[COPY ./second.txt .]-.->IL3["Intermediate Image Layer3(13b825a700e2)/7B"]
+        LAYER4[ADD ./third.txt .]-.->IL4["Intermediate Image Layer4(6b786cea2e12)/6B"]
+        LAYER5["CMD ['echo', 'fourth']"]-.->IL5["Image Layer5(6533a93ed3e4)/0B"]
+    end
+```
 
 ```shell script
 [root@docker-test docker-layer]# docker images -a
@@ -179,7 +189,15 @@ Server:
 
 - https://docs.docker.com/engine/reference/commandline/image_inspect/
 
-<img src="https://user-images.githubusercontent.com/11391606/148420106-91f804a1-d68f-436b-abf5-3c0affb11849.png" width="700" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Layers"]
+        direction LR
+        LAYER3[ADD ./third.txt .]-.->IL3["Image Layer3(?)/6B"]
+        LAYER2[COPY ./second.txt .]-.->IL2["Image Layer2(?)/7B"]
+        LAYER1[FROM alpine:latest]-.->IL1["Image Layer1(8d3ac3489996...)/5.59MB"]
+    end
+```
 
 ```shell script
 [root@docker-test sha256]# docker image inspect 6533a93ed3e4
@@ -276,7 +294,31 @@ Union 파일 시스템이란? `여러 파일 시스템`들을 `하나의 파일 
 
 > 컨테이너가 생성되면, 이미지에 포함된 모든 `이미지 레이어`들을 순차적으로 쌓은 후, 가장 위에 R/W 권한을 가진 `컨테이너 레이어`를 추가합니다.
 
-<img src="https://user-images.githubusercontent.com/11391606/148420892-e75d615a-73c6-40cf-8f28-a27a4ebb5dd0.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph Union File System
+        direction BT
+        subgraph ML["Merged Layer(RW)"]
+            direction LR
+            FS3[third.txt/6B]
+            FS2[second.txt/7B]
+            FS1[alpine/5.59MB]
+        end
+        subgraph CL["Container Layer(RW)"]
+            direction LR
+        end
+        subgraph IL["Image Layers(RO)"]
+            direction LR
+            LAYER3[ADD ./third.txt .]-.->IL3["Image Layer3(6b786cea2e12)/6B"]
+            LAYER2[COPY ./second.txt .]-.->IL2["Image Layer2(13b825a700e2)/7B"]
+            LAYER1[FROM alpine:latest]-.->IL1["Image Layer1(c059bfaa849c)/5.59MB"]
+        end
+    end
+    IL -->  CL --> ML
+    style ML fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style CL fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style IL fill:#fbfbfb,stroke:#333,stroke-width:2px
+```
 
 최종적으로, `이미지 레이어`들의 데이터와, `컨테이너 레이어`의 데이터가 `merged 레이어`에 병합되고, 컨테이너가 마운트됩니다.
 
@@ -369,7 +411,31 @@ dev  home  media  opt  root  sbin  srv         tmp        var
 - `alpine:latest` 이미지의 `데이터 디렉토리`에 임의의 `test.txt` 파일을 추가한 후, 컨테이너를 생성하면, 
 앞서 말한, `Union 파일 시스템 구조`로인해, `merged` 디렉토리에서, 추가된 `test.txt` 파일을 확인할 수 있습니다.
 
-<img src="https://user-images.githubusercontent.com/11391606/148420886-f81693d4-6fd1-487c-bbe9-6788e5611473.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph Union File System
+        direction BT
+        subgraph ML["Merged Layer(RW)"]
+            direction LR
+            FS3[third.txt/6B]
+            FS2[second.txt/7B]
+            FS1["alpine(test.txt...)/5.64MB"]
+        end
+        subgraph CL["Container Layer(RW)"]
+            direction LR
+        end
+        subgraph IL["Image Layers(RO)"]
+            direction LR
+            LAYER3[ADD ./third.txt .]-.->IL3["Image Layer3(6b786cea2e12)/6B"]
+            LAYER2[COPY ./second.txt .]-.->IL2["Image Layer2(13b825a700e2)/7B"]
+            LAYER1[FROM alpine:latest]-.->IL1["Image Layer1(c059bfaa849c)/5.64MB"]
+        end
+    end
+    IL -->  CL --> ML
+    style ML fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style CL fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style IL fill:#fbfbfb,stroke:#333,stroke-width:2px
+```
 
 기존 `merged` 디렉토리는, 다음과 같습니다.
 

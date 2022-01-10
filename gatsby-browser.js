@@ -7,4 +7,6 @@ import "./src/normalize.css"
 import "./src/style.css"
 
 // Highlighting for code blocks
-import "prismjs/themes/prism.css"
+import "./src/prism-okaidia.css"
+// copy buttons
+import "./src/copy-buttons.css"

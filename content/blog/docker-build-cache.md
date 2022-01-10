@@ -66,7 +66,38 @@ Successfully built 17be1d9b9c5e
 Successfully tagged docker-layers:0.0.1
 ```
 
-<img src="https://user-images.githubusercontent.com/11391606/148420099-ad4170e4-2f5d-4aa1-a2b5-9244a1a0e767.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Chain"]
+        direction BT
+        subgraph LAYER1["Image1"]
+            direction LR
+            _LAYER1[FROM alpine:latest]-.->_IL1["c059bfaa849c/5.59MB"]
+        end
+        subgraph LAYER2["Image2"]
+            direction LR
+            _LAYER2[RUN echo first]-.->_IL2["c1ee277ee0b6/0B"]
+        end
+        subgraph LAYER3["Image3"]
+            direction LR     
+            _LAYER3[COPY ./second.txt .]-.->_IL3["13b825a700e2/7B"]
+        end
+        subgraph LAYER4["Image4"]
+            direction LR
+            _LAYER4[ADD ./third.txt .]-.->_IL4["6b786cea2e12/6B"]
+        end
+        subgraph LAYER5["Image5"]
+            direction LR
+            _LAYER5["CMD ['echo', 'fourth']"]-.->_IL5["6533a93ed3e4/0B"]
+        end
+    end
+    LAYER5 --> |Parent|LAYER4 --> |Parent|LAYER3 --> |Parent|LAYER2 --> |Parent|LAYER1
+    style LAYER1 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER2 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER3 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER4 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER5 fill:#fbfbfb,stroke:#333,stroke-width:2px
+```
 
 > 캐시된 `이미지`들이 존재하지않는것을, 한번 더 확인할 수 있습니다.
 
@@ -121,7 +152,38 @@ Successfully built 17be1d9b9c5e
 Successfully tagged docker-layers:0.0.2
 ```
 
-<img src="https://user-images.githubusercontent.com/11391606/148420069-71291d1d-0d57-4b1f-bca2-ca9e4f2a99ec.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Chain"]
+        direction BT
+        subgraph LAYER1["Image1(Using cache)"]
+            direction LR
+            _LAYER1[FROM alpine:latest]-.->_IL1["c059bfaa849c/5.59MB"]
+        end
+        subgraph LAYER2["Image2(Using cache)"]
+            direction LR
+            _LAYER2[RUN echo first]-.->_IL2["3a18fe3979f0/0B"]
+        end
+        subgraph LAYER3["Image3(Using cache)"]
+            direction LR     
+            _LAYER3[COPY ./second.txt .]-.->_IL3["6da5ddb808b7/7B"]
+        end
+        subgraph LAYER4["Image4(Using cache)"]
+            direction LR
+            _LAYER4[ADD ./third.txt .]-.->_IL4["a537bad7aa2b/6B"]
+        end
+        subgraph LAYER5["Image5(Using cache)"]
+            direction LR
+            _LAYER5["CMD ['echo', 'fourth']"]-.->_IL5["17be1d9b9c5e/0B"]
+        end
+    end
+    LAYER5 --> |Parent|LAYER4 --> |Parent|LAYER3 --> |Parent|LAYER2 --> |Parent|LAYER1
+    style LAYER1 fill:antiquewhite,stroke:#333,stroke-width:2px
+    style LAYER2 fill:antiquewhite,stroke:#333,stroke-width:2px
+    style LAYER3 fill:antiquewhite,stroke:#333,stroke-width:2px
+    style LAYER4 fill:antiquewhite,stroke:#333,stroke-width:2px
+    style LAYER5 fill:antiquewhite,stroke:#333,stroke-width:2px
+```
 
 > `docker-layers:0.0.1` 로 부터 캐시된 `이미지`들이, `재 활용`된것을 확인할 수 있습니다.
 
@@ -186,7 +248,43 @@ Successfully built 2e50e1c93943
 Successfully tagged docker-layers:0.0.3
 ```
 
-<img src="https://user-images.githubusercontent.com/11391606/148420089-aaebece2-e80f-4046-982b-a7230009c3da.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Chain"]
+        direction BT
+        subgraph LAYER1["Image1(Using cache)"]
+            direction LR
+            _LAYER1[FROM alpine:latest]-.->_IL1["c059bfaa849c/5.59MB"]
+        end
+        subgraph LAYER2["Image2(Using cache)"]
+            direction LR
+            _LAYER2[RUN echo first]-.->_IL2["3a18fe3979f0/0B"]
+        end
+        subgraph LAYER3["Image3(Using cache)"]
+            direction LR     
+            _LAYER3[COPY ./second.txt .]-.->_IL3["6da5ddb808b7/7B"]
+        end
+        subgraph LAYER4["Image4(New Image)"]
+            direction LR     
+            _LAYER4[COPY ./new_second.txt .]-.->_IL4["c3f400b3c3b4/11B"]
+        end
+        subgraph LAYER5["Image5(New Image)"]
+            direction LR
+            _LAYER5[ADD ./third.txt .]-.->_IL5["b089e6d887fe/6B"]
+        end
+        subgraph LAYER6["Image6(New Image)"]
+            direction LR
+            _LAYER6["CMD ['echo', 'fourth']"]-.->_IL6["2e50e1c93943/0B"]
+        end
+    end
+    LAYER6 --> |"Parent(modified)"|LAYER5 --> |"Parent(modified)"|LAYER4 --> |Parent|LAYER3 --> |Parent|LAYER2 --> |Parent|LAYER1
+    style LAYER1 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER2 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER3 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER4 fill:#FFA3AD,stroke:#333,stroke-width:2px
+    style LAYER5 fill:#FFA3AD,stroke:#333,stroke-width:2px
+    style LAYER6 fill:#FFA3AD,stroke:#333,stroke-width:2px        
+```
 
 > 일부 이미지(`c059bfaa849c` ~ `6da5ddb808b7`)들만 `재 활용`되었고, 추가된 `COPY` 명령과, 
 그 뒤의 모든 명령들이 새로운 `이미지`로 추가되었습니다.
@@ -226,7 +324,43 @@ b089e6d887fe05bada5545875ec3d97d55f5b41c4cba260a9c64b66fa30cddf8
 
 ## 캐시된 이미지가 무효화된 이유
 
-<img src="https://user-images.githubusercontent.com/11391606/148420089-aaebece2-e80f-4046-982b-a7230009c3da.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Chain"]
+        direction BT
+        subgraph LAYER1["Image1(Using cache)"]
+            direction LR
+            _LAYER1[FROM alpine:latest]-.->_IL1["c059bfaa849c/5.59MB"]
+        end
+        subgraph LAYER2["Image2(Using cache)"]
+            direction LR
+            _LAYER2[RUN echo first]-.->_IL2["3a18fe3979f0/0B"]
+        end
+        subgraph LAYER3["Image3(Using cache)"]
+            direction LR     
+            _LAYER3[COPY ./second.txt .]-.->_IL3["6da5ddb808b7/7B"]
+        end
+        subgraph LAYER4["Image4(New Image)"]
+            direction LR     
+            _LAYER4[COPY ./new_second.txt .]-.->_IL4["c3f400b3c3b4/11B"]
+        end
+        subgraph LAYER5["Image5(New Image)"]
+            direction LR
+            _LAYER5[ADD ./third.txt .]-.->_IL5["b089e6d887fe/6B"]
+        end
+        subgraph LAYER6["Image6(New Image)"]
+            direction LR
+            _LAYER6["CMD ['echo', 'fourth']"]-.->_IL6["2e50e1c93943/0B"]
+        end
+    end
+    LAYER6 --> |"Parent(modified)"|LAYER5 --> |"Parent(modified)"|LAYER4 --> |Parent|LAYER3 --> |Parent|LAYER2 --> |Parent|LAYER1
+    style LAYER1 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER2 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER3 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER4 fill:#FFA3AD,stroke:#333,stroke-width:2px
+    style LAYER5 fill:#FFA3AD,stroke:#333,stroke-width:2px
+    style LAYER6 fill:#FFA3AD,stroke:#333,stroke-width:2px        
+```
 
 [이미지 레이어 체인]()의 `부모/자식` 관계로인해, 
 추가된 이미지(`new_second.txt`) 이후의 이미지들이 바라보던 `parent` 의 변경과함께, 
@@ -244,7 +378,38 @@ ADD ./third.txt .
 CMD ["echo", "fourth"] 
 ```
 
-<img src="https://user-images.githubusercontent.com/11391606/148461729-44228c21-9209-4ac8-a30c-46b7facff7c7.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Chain"]
+        direction BT
+        subgraph LAYER1["Image1"]
+            direction LR
+            _LAYER1[FROM alpine:latest]-.->_IL1["c059bfaa849c/5.59MB"]
+        end
+        subgraph LAYER2["Image2"]
+            direction LR
+            _LAYER2[RUN echo first]-.->_IL2["3a18fe3979f0/0B"]
+        end
+        subgraph LAYER3["Image3"]
+            direction LR     
+            _LAYER3[COPY ./second.txt .]-.->_IL3["6da5ddb808b7/7B"]
+        end
+        subgraph LAYER4["Image4"]
+            direction LR
+            _LAYER4[ADD ./third.txt .]-.->_IL4["a537bad7aa2b/6B"]
+        end
+        subgraph LAYER5["Image5"]
+            direction LR
+            _LAYER5["CMD ['echo', 'fourth']"]-.->_IL5["17be1d9b9c5e/0B"]
+        end
+    end
+    LAYER5 --> |Parent|LAYER4 --> |Parent|LAYER3 --> |Parent|LAYER2 --> |Parent|LAYER1
+    style LAYER1 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER2 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER3 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER4 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER5 fill:#fbfbfb,stroke:#333,stroke-width:2px
+```
 
 변경 후 `Dockerfile`
 
@@ -257,7 +422,44 @@ ADD ./third.txt .
 CMD ["echo", "fourth"]
 ```
 
-<img src="https://user-images.githubusercontent.com/11391606/148420094-f817a05e-8d11-48d2-8ce2-04d90823ba0e.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Chain"]
+        direction BT
+        subgraph LAYER1["Image1"]
+            direction LR
+            _LAYER1[FROM alpine:latest]-.->_IL1["c059bfaa849c/5.59MB"]
+        end
+        subgraph LAYER2["Image2"]
+            direction LR
+            _LAYER2[RUN echo first]-.->_IL2["3a18fe3979f0/0B"]
+        end
+        subgraph LAYER3["Image3"]
+            direction LR     
+            _LAYER3[COPY ./second.txt .]-.->_IL3["6da5ddb808b7/7B"]
+        end
+        subgraph LAYER4["Image4"]
+            direction LR     
+            _LAYER4[COPY ./new_second.txt .]-.->_IL4["c3f400b3c3b4/11B"]
+        end
+        subgraph LAYER5["Image5"]
+            direction LR
+            _LAYER5[ADD ./third.txt .]-.->_IL5["b089e6d887fe/6B"]
+        end
+        subgraph LAYER6["Image6"]
+            direction LR
+            _LAYER6["CMD ['echo', 'fourth']"]-.->_IL6["2e50e1c93943/0B"]
+        end
+    end
+    LAYER6 --> |"Parent"|LAYER5 --> |"Parent"|LAYER4 --> |Parent|LAYER3 --> |Parent|LAYER2 --> |Parent|LAYER1
+
+    style LAYER1 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER2 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER3 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER4 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER5 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER6 fill:#fbfbfb,stroke:#333,stroke-width:2px        
+```
 
 `/var/lib/docker/image/overlay2/imagedb/metadata/sha256` 목록입니다.
 

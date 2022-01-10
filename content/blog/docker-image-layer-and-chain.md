@@ -53,7 +53,15 @@ c059bfaa849c   5 weeks ago   /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B
 
 https://docs.docker.com/engine/reference/commandline/image_inspect/
 
-<img src="https://user-images.githubusercontent.com/11391606/148420106-91f804a1-d68f-436b-abf5-3c0affb11849.png" width="700" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Layers"]
+        direction LR
+        LAYER3[ADD ./third.txt .]-.->IL3["Image Layer3(?)/6B"]
+        LAYER2[COPY ./second.txt .]-.->IL2["Image Layer2(?)/7B"]
+        LAYER1[FROM alpine:latest]-.->IL1["Image Layer1(8d3ac3489996...)/5.59MB"]
+    end
+```
 
 ```shell script
 [root@docker-test sha256]# docker image inspect 6533a93ed3e4
@@ -86,7 +94,38 @@ c41ff8f7e1a31f45604ee0f6a1dbda09170df0a56c4054cb96fe81e3d344aa28
 
 ## 도커 이미지 체인
 
-<img src="https://user-images.githubusercontent.com/11391606/148420102-d5c8baf3-267b-40be-a2fa-84cc1e5b9f5b.png" height="800" />
+```mermaid
+flowchart TB
+    subgraph IL["Image Chain"]
+        direction BT
+        subgraph LAYER1["Image1"]
+            direction LR
+            _LAYER1[FROM alpine:latest]-.->_IL1["c059bfaa849c/5.59MB"]
+        end
+        subgraph LAYER2["Image2"]
+            direction LR
+            _LAYER2[RUN echo first]-.->_IL2["c1ee277ee0b6/0B"]
+        end
+        subgraph LAYER3["Image3"]
+            direction LR     
+            _LAYER3[COPY ./second.txt .]-.->_IL3["13b825a700e2/7B"]
+        end
+        subgraph LAYER4["Image4"]
+            direction LR
+            _LAYER4[ADD ./third.txt .]-.->_IL4["6b786cea2e12/6B"]
+        end
+        subgraph LAYER5["Image5"]
+            direction LR
+            _LAYER5["CMD ['echo', 'fourth']"]-.->_IL5["6533a93ed3e4/0B"]
+        end
+    end
+    LAYER5 --> |Parent|LAYER4 --> |Parent|LAYER3 --> |Parent|LAYER2 --> |Parent|LAYER1
+    style LAYER1 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER2 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER3 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER4 fill:#fbfbfb,stroke:#333,stroke-width:2px
+    style LAYER5 fill:#fbfbfb,stroke:#333,stroke-width:2px
+```
 
 생성된 모든 `이미지`들은, 모두 위와 같은 `부모/자식` 관계를 갖게됩니다.
 

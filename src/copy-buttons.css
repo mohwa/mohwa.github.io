@@ -1,0 +1,8 @@
+.gatsby-code-button-container {
+    top: 12px;
+}
+
+.gatsby-code-button-container svg {
+    width: 24px;
+    height: 24px;
+}
