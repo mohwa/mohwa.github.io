@@ -51,6 +51,7 @@ module.exports = {
           },
           'gatsby-remark-embed-snippet',
           {
+            // https://github.com/iamskok/gatsby-remark-code-buttons
             resolve: 'gatsby-remark-code-buttons',
             options: {
               // tooltipText: `Click to copy`,
@@ -120,6 +121,7 @@ module.exports = {
           },
           'gatsby-remark-mermaid',
           {
+            // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-prismjs
             resolve: `gatsby-remark-prismjs`,
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;
