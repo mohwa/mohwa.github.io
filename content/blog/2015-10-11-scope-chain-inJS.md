@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Scope Chain 그리고 Closure"
-description: "JavaScript Scope Chain 그리고 Closure 대해 알아보기"
 date:   2015-10-11
 categories: javascript
 tags: [JavaScript]

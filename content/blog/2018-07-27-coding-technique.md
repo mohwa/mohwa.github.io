@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "코딩을 지탱하는 기술(1 ~ 3장)"
-description: "코딩을 지탱하는 기술"
 date:   2018-07-27
 categories: [book, cording, technique]
 tags: [book, cording, technique]

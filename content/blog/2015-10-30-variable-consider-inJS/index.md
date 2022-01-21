@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "GC 를 통한 객체 소멸 시점"
-description: "GC 를 통한 객체 소멸 시점"
 date:   2015-10-30
 categories: JavaScript
 tags: [JavaScript]

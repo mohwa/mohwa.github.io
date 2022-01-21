@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "객체 지향 언어의 두 가지 줄기"
-description: "객체 지향 언어의 두 가지 줄기"
 date:   2015-10-16
 categories: javascript
 tags: [JavaScript]

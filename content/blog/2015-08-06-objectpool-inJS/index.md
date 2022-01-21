@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ObjectPool in JS"
-description: "JavaScript 를 활용한 ObjectPool 구현"
 date:   2015-10-16
 categories: [designPattern]
 tags: [designPattern, objectPool, C#, C++, Java, JavaScript]

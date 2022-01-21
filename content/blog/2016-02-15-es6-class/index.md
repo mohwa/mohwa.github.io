@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ES6 Class #1"
-description: "ES6 Class #1"
 date: 2016-02-15
 categories: [javascript]
 tags: [JavaScript, es6]

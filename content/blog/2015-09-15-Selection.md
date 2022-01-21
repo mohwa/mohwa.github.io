@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Selection"
-description: "Selection API 사용방법"
 date:   2015-09-15
 categories: JavaScript
 tags: [JavaScript]

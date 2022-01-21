@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript 를 통해 Binary Data 조작하기"
-description: "JavaScript 를 통해 Binary Data 조작하기"
 date:   2015-08-31
 categories: JavaScript
 #tags: [JavaScript]

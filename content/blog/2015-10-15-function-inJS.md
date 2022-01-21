@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Function in JS"
-description: "JavaScript 함수에 대해 알아보기"
 date:   2015-10-15
 categories: javascript
 tags: [JavaScript]

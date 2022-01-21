@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Yeoman-Generator"
-description: "Yeoman Generator API 사용방법"
 date:   2015-10-16
 categories: [generator]
 tags: [generator]

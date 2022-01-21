@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ES6 object initializer"
-description: "ES6 object initializer"
 date: 2016-04-21
 categories: [javascript]
 tags: [JavaScript, es6]

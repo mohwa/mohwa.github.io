@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Interface in JS"
-description: "JavaScript 를 활용한 인터페이스 구현"
 date:   2015-08-07
 categories: designPattern
 #tags: [interface, C#, C++, JAVA, JavaScript, designPattern]

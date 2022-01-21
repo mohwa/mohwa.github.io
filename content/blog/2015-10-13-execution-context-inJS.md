@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Execution Context in JS"
-description: "JavaScript 실행 컨텍스트"
 date:   2015-10-13
 categories: javascript
 tags: [JavaScript]

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Variable in JS"
-description: "JavaScript 변수"
 date:   2015-10-14
 categories: javascript
 tags: [JavaScript]

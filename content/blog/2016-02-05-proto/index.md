@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "__proto__ 속성과 프로토타입 위임 과정"
-description: "__proto__ 속성과 프로토타입 위임 과정"
 date: 2016-02-05
 categories: [javascript]
 tags: [JavaScript]

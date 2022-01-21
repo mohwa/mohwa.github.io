@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ES6 Destructuring assignment"
-description: "ES6 Destructing assignment"
 date: 2016-03-24
 categories: [javascript]
 tags: [JavaScript, es6]

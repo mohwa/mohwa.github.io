@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Struct in JS"
-description: "JavaScript 를 활용한 구조체 구현"
 date:   2015-08-07
 categories: designPattern
 #tags: [Struct, C#, C++, JAVA, JavaScript, designPattern]

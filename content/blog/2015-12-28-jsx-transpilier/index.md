@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JSXTransformer(in React) 소스 분석"
-description: "JSXTransformer(in React) 소스 분석"
 date:   2015-12-28
 categories: [architecture]
 tags: [architecture, html, xhtml, html5, JavaScript, React]

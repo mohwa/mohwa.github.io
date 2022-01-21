@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "DOM(Document Object Model)"
-description: "DOM(Document Object Model)"
 date:   2015-12-10
 categories: [architecture]
 tags: [architecture, web, dom, html, xhtml, html5, JavaScript]

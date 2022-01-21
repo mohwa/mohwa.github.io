@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JQuery UI Select Box 구현"
-description: "JQuery UI Select Box 구현"
 date:   2016-02-01
 categories: javascript 
 tags: [JavaScript]

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "slideUp, slideDown, slideLeft, slideRight 함수 구현"
-description: "slideUp, slideDown, slideLeft, slideRight 함수 구현"
 date:   2016-01-18
 categories: javascript 
 tags: [JavaScript]

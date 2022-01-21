@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ES6 Arrow Function & This Test"
-description: "ES6 Arrow Function & This Test"
 date: 2016-02-18
 categories: [javascript]
 tags: [JavaScript, es6]
